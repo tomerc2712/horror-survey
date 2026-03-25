@@ -456,17 +456,18 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
     },1200);
   };
 
-  var FORM_ID='1F00dVwVqgXVk3hvXyqzft1sNwhcYNBAufdNR8S4Rg-M';
-  var ENTRY='entry.686530069';
+  var SHEET_URL='https://script.google.com/macros/s/AKfycbw-sa5197JR3ramEFxDoyYhq8mFwOtf5oJzNBx1mZeQ3qrJL5UBhR7mqYA3a8VlhRF7bw/exec';
 
   document.getElementById('sf').addEventListener('submit',function(e){
     e.preventDefault();
     var data={timestamp:new Date().toISOString()};
     new FormData(this).forEach(function(v,k){data[k]=data[k]?data[k]+'|'+v:v});
-    var payload=JSON.stringify(data);
-    var url='https://docs.google.com/forms/d/e/'+FORM_ID+'/formResponse';
-    var body=ENTRY+'='+encodeURIComponent(payload)+'&submit=Submit';
-    fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).catch(function(){});
+    fetch(SHEET_URL,{
+      method:'POST',
+      mode:'no-cors',
+      body:JSON.stringify(data),
+      headers:{'Content-Type':'application/json'}
+    }).catch(function(){});
     document.getElementById('sf').style.display='none';
     document.getElementById('done').classList.add('show');
     window.scrollTo({top:0,behavior:'smooth'});
