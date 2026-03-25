@@ -376,7 +376,7 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
   var presIds=['figure','shadow','msg','hospital'];
   var answers={s1:null,s2:null,s3:null};
 
-  var PLAYLIST_ID='PLXdU_IJJVASJoE_beJcu8H6JiPET87BDa';
+  var VIDEO_IDS=['eKU6Gl6cBz4','GIQ0PdCOkLw','bMPTyNW3qkA','G2-wOi_H9S4','HZV3uF-ABjw','mAI0JDnK07A','9WTtAv-4KWQ','5tg0X8k7tv0','M_NIU-Sq3O0','925acSqDtoA','0H8feqG2zOk','eUkr-aHTqAM','kdUulxOdO3M','GhrxOTGzRow','qEh3osh9Bbk'];
 
   var SHEET_URL='https://script.google.com/macros/s/AKfycby8nGQVbeJ9-ZjiqHbPWjK4zuQmZUBYpx7RHU5pPdQVB_ETaE1ocjPY06_zuYr9OSiV/exec';
 
@@ -447,10 +447,10 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
     var btn=document.getElementById('lottery-btn');
     btn.disabled=true;btn.innerHTML='<span>⏳</span> מגריל...';
     setTimeout(function(){
-      var startIdx=Math.floor(Math.random()*30);
+      var id=VIDEO_IDS[Math.floor(Math.random()*VIDEO_IDS.length)];
       var vw=document.getElementById('video-wrap');
       vw.classList.add('show');
-      vw.innerHTML='<iframe style="width:100%;height:100%;border:none" allowfullscreen allow="autoplay" src="https://www.youtube.com/embed/videoseries?list='+PLAYLIST_ID+'&index='+startIdx+'&autoplay=1&rel=0&shuffle=1"></iframe>';
+      vw.innerHTML='<iframe style="width:100%;height:100%;border:none" allowfullscreen allow="autoplay" src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0"></iframe>';
       btn.style.display='none';
       document.getElementById('lottery-note').textContent='הנה הקריפיפסטה שלך 🎧';
     },1200);
