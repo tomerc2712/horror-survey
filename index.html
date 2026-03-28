@@ -126,22 +126,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
     </div></div>
 
   <div class="qb"><div class="qnum">01</div><label class="qlabel" for="q1" id="q1-label">בני כמה אתם/ן?</label>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <select id="q1" name="q1" style="background:#080808;border:.5px solid #252525;border-radius:10px;color:#c084fc;font-family:'Rubik',sans-serif;font-size:15px;padding:.65rem .9rem;outline:none;flex:1;min-width:140px;-webkit-appearance:none;appearance:none;cursor:pointer">
-        <option value="" disabled selected>בחר גיל...</option>
-        <option value="5-9">5–9</option>
-        <option value="10-12">10–12</option>
-        <option value="13-15">13–15</option>
-        <option value="16-18">16–18</option>
-        <option value="19-22">19–22</option>
-        <option value="23-27">23–27</option>
-        <option value="28-35">28–35</option>
-        <option value="36-45">36–45</option>
-        <option value="46+">46+</option>
-      </select>
-      <span style="color:var(--txd);font-size:13px">או</span>
-      <input type="number" name="q1_manual" placeholder="כתוב בעצמך" min="5" max="99" style="flex:1;min-width:120px;border-radius:10px">
-    </div></div>
+    <input type="number" id="q1" name="q1" placeholder="גיל" min="5" max="99" style="max-width:140px;border-radius:10px"></div>
 
   <div class="qb"><div class="qnum">02</div><label class="qlabel">מתי בפעם האחרונה צפית בסיפור אימה ביוטיוב?</label>
     <div class="opts">
