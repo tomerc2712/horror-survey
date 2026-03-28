@@ -10,7 +10,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;font-size:17px}
 .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 100%,rgba(139,0,0,.09) 0%,transparent 60%),radial-gradient(ellipse at 15% 60%,rgba(45,0,64,.14) 0%,transparent 50%),radial-gradient(ellipse at 85% 30%,rgba(45,0,64,.1) 0%,transparent 40%)}
-.trees{position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:0;pointer-events:none;opacity:.85;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23111'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%230a0a0a'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23111'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%230a0a0a'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23111'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%230a0a0a'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23111'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%230a0a0a'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23111'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%230a0a0a'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23111'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%230a0a0a'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23111'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%230a0a0a'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23111'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%230a0a0a'/%3E%3C/svg%3E") bottom/cover no-repeat}
+.trees{position:fixed;bottom:0;left:0;right:0;height:45vh;z-index:0;pointer-events:none;opacity:1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23444'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%23333'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23444'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%23333'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23444'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%23333'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23444'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%23333'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23444'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%23333'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23444'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%23333'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23444'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%23333'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23444'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%23333'/%3E%3C/svg%3E") bottom/cover no-repeat}
 .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 1.25rem 6rem}
 
 .hero{text-align:center;padding:4rem 1rem 3rem;position:relative}
@@ -63,32 +63,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 .vsopt.on{background:#0d0000;border-color:var(--red-b);color:#e0e0e0}
 .vsmid{font-size:10px;color:var(--red);font-family:'Rubik Mono One',monospace;text-align:center;padding:0 3px}
 
-.imgset{margin-bottom:1.25rem}
-.isetlbl{font-size:10px;color:var(--txd);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
-.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.icard{aspect-ratio:4/3;border-radius:4px;border:1.5px solid #2a2a2a;background:var(--blk3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:border-color .15s,background .15s;padding:0;-webkit-appearance:none;appearance:none;font-family:inherit;outline:none;user-select:none}
-.icard:hover{border-color:var(--red-b);background:#0d0000}
-.icard.on{border:2px solid var(--red-b);background:#1a0000;cursor:default}
-.icard.on:hover{border:2px solid var(--red-b);background:#1a0000}
-.icard.dim{opacity:.2;cursor:not-allowed}
-.icard.dim:hover{border-color:#2a2a2a;background:var(--blk3)}
-.iemoji{font-size:32px;line-height:1;pointer-events:none}
-.icap{font-size:11px;color:var(--txm);text-align:center;padding:0 6px;line-height:1.3;pointer-events:none}
-
-.rbox{margin-top:.875rem;padding:.75rem 1rem;border-radius:3px;background:#06020d;border:.5px solid #200040;border-right:2px solid var(--pur);display:none}
-.rbox.show{display:block}
-.rlbl{font-size:9px;color:var(--pur-l);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
-.rtxt{font-size:12px;color:#bbb;line-height:1.55;font-style:italic}
-
-.profs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:.875rem}
-.pcard{padding:.875rem;border-radius:4px;border:.5px solid #1c1c1c;background:var(--blk2);text-align:center;border-top:2px solid #2a0000;transition:all .3s}
-.pcard.on{background:#120000;border-top-color:var(--red-b)}
-.pname{font-size:12px;font-weight:500;color:#774444;margin-bottom:.35rem;transition:color .3s}
-.pcard.on .pname{color:var(--red-b)}
-.pdesc{font-size:11px;color:var(--txd);line-height:1.5}
-.pcard.on .pdesc{color:var(--txm)}
-
-.pill{font-size:10px;padding:2px 8px;border-radius:2px;background:#1a0808;color:var(--red-b);border:.5px solid #3a0a0a}
+.pcard.on .pcard.on .pill{font-size:10px;padding:2px 8px;border-radius:2px;background:#1a0808;color:var(--red-b);border:.5px solid #3a0a0a}
 
 .sub-wrap{text-align:center;margin-top:2.5rem}
 .sub-btn{padding:.9rem 2.5rem;background:var(--red);color:#fff;border:none;border-radius:3px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.06em;transition:background .2s}
@@ -215,84 +190,6 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
     </div></div>
 </div>
 
-<div class="div">ד</div>
-
-<!-- D IMAGE -->
-<div class="sec">
-  <div class="sec-head"><div class="sec-letter">ד</div><div class="sec-title">בחר אינסטינקטיבית</div><div class="sec-sub">אל תחשוב יותר מדי</div></div>
-
-  <div class="imgset">
-    <div class="isetlbl">סט 1 — מה מפחיד?</div>
-    <div class="igrid" id="set1">
-      <button type="button" class="icard" data-set="set1" data-val="road" data-rev="פחד הבידוד — האיום מגיע מהסביבה הריקה. אתה מגיב לחוסר שליטה על הסביבה."><div class="iemoji">🌫️</div><div class="icap">כביש ריק בלילה</div></button>
-      <button type="button" class="icard" data-set="set1" data-val="photo" data-rev="פחד הזיכרון — מה שאמור להיות בטוח הפך למסתורי. הנוסטלגיה מתהפכת לחרדה."><div class="iemoji">🖼️</div><div class="icap">תמונה משפחתית ישנה</div></button>
-      <button type="button" class="icard" data-set="set1" data-val="door" data-rev="פחד הלא-נודע — המוח ממלא את החשכה בגרוע ביותר שהוא יכול לדמיין."><div class="iemoji">🚪</div><div class="icap">דלת פתוחה לחשכה</div></button>
-      <button type="button" class="icard" data-set="set1" data-val="figure" data-rev="פחד האמביגואליות — לא רואים את הפנים. המוח ממלא את הריק תמיד בצורה הגרועה ביותר."><div class="iemoji">🧍</div><div class="icap">דמות מגבה</div></button>
-    </div>
-    <div class="rbox" id="r1"><div class="rlbl">מה זה אומר עליך</div><div class="rtxt" id="r1t"></div></div>
-    <input type="hidden" id="q_s1" name="q_s1">
-  </div>
-
-  <div class="imgset">
-    <div class="isetlbl">סט 2 — מה מאיים?</div>
-    <div class="igrid" id="set2">
-      <button type="button" class="icard" data-set="set2" data-val="house" data-rev="פחד הפרת הסדר — משהו שאמור להיות מת חי. מה שנוגד את הלוגיקה מבעית יותר."><div class="iemoji">🏚️</div><div class="icap">בית נטוש עם אור</div></button>
-      <button type="button" class="icard" data-set="set2" data-val="lake" data-rev="פחד השתיקה — השקט המוחלט מאותת שכל שאר הברואים כבר ברחו."><div class="iemoji">🌊</div><div class="icap">אגם שקט בלילה</div></button>
-      <button type="button" class="icard" data-set="set2" data-val="shadow" data-rev="פחד הנוכחות — לא הצל מפחיד, אלא ההכרה שמישהו רואה אותך בלי שידעת."><div class="iemoji">🪟</div><div class="icap">צל מאחורי הווילון</div></button>
-      <button type="button" class="icard" data-set="set2" data-val="msg" data-rev="הפחד הדיגיטלי — האיום נכנס דרך המכשיר שאתה הכי סומך עליו."><div class="iemoji">📱</div><div class="icap">הודעה בלילה</div></button>
-    </div>
-    <div class="rbox" id="r2"><div class="rlbl">מה זה אומר עליך</div><div class="rtxt" id="r2t"></div></div>
-    <input type="hidden" id="q_s2" name="q_s2">
-  </div>
-
-  <div class="imgset">
-    <div class="isetlbl">סט 3 — איזה מקום?</div>
-    <div class="igrid" id="set3">
-      <button type="button" class="icard" data-set="set3" data-val="hospital" data-rev="מקום שנועד לריפוי אבל מלא בסבל. הגבול בין חיים למוות דק שם באופן מוחשי."><div class="iemoji">🏥</div><div class="icap">מסדרון בית חולים</div></button>
-      <button type="button" class="icard" data-set="set3" data-val="forest" data-rev="הפחד הקדום — הטבע לא בנוי בשבילך. שם אתה הטרף, לא הציד."><div class="iemoji">🌲</div><div class="icap">יער בלילה</div></button>
-      <button type="button" class="icard" data-set="set3" data-val="pool" data-rev="ניגוד שמבלבל — האור נועד לבטיחות, אבל הריקנות יוצרת תחושת מלכודת."><div class="iemoji">🏊</div><div class="icap">בריכה ריקה בלילה</div></button>
-      <button type="button" class="icard" data-set="set3" data-val="office" data-rev="פחד השגרה שהפכה זרה — מקום מוכר ביום הופך מסוכן בלילה."><div class="iemoji">🏢</div><div class="icap">משרד ריק בלילה</div></button>
-    </div>
-    <div class="rbox" id="r3"><div class="rlbl">מה זה אומר עליך</div><div class="rtxt" id="r3t"></div></div>
-    <input type="hidden" id="q_s3" name="q_s3">
-  </div>
-
-  <div id="profwrap" style="display:none;margin-top:1rem">
-    <div class="isetlbl" style="margin-bottom:.75rem">הפרופיל שלך:</div>
-    <div class="profs">
-      <div class="pcard" id="p-iso"><div class="pname">פחד הבידוד</div><div class="pdesc">מגיב לניתוק מהעולם ומהמציאות</div></div>
-      <div class="pcard" id="p-unc"><div class="pname">פחד הלא-מוכר</div><div class="pdesc">הסביבה המוכרת עם פרט אחד שגוי</div></div>
-      <div class="pcard" id="p-pre"><div class="pname">פחד הנוכחות</div><div class="pdesc">נצפה מבלי לדעת, פגיע בלי הגנה</div></div>
-    </div>
-    <input type="hidden" id="q_prof" name="q_prof">
-  </div>
-</div>
-
-<div class="div">ה</div>
-
-<!-- E -->
-<div class="sec">
-  <div class="sec-head"><div class="sec-letter">ה</div><div class="sec-title">ביקורת כנה</div><div class="sec-sub">אנונימי לחלוטין</div></div>
-
-  <div class="qb"><div class="qnum">13</div><label class="qlabel" for="q13">מה הקריפיפסטה הכי אהובה עליך ולמה?</label>
-    <textarea id="q13" name="q13" placeholder="איך היית מתאר אותה לחבר/ה הכי טוב שלך?"></textarea></div>
-
-
-  <div class="qb"><div class="qnum">15</div><label class="qlabel" for="q15">אם היית יכול לומר לי דבר אחד שאף אחד לא מעז לומר לי — מה זה היה?</label>
-    <textarea id="q15" name="q15" placeholder="הכל טוב, אתם אנונימיים - וכנות תמיד עוזרת!"></textarea></div>
-
-  <div class="qb"><div class="qnum">16</div><label class="qlabel">מה גורם לקריפיפסטה להרגיש "זולה"? <span class="pill">בחירה מרובה</span></label>
-    <div class="opts">
-      <label class="oitem"><input type="checkbox" name="q16" value="קצב מהיר"><span>קצב מהיר מדי, בלי בניית מתח</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="דמויות שטוחות"><span>דמויות שטוחות שאי אפשר להזדהות איתן</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="הסבר יתר"><span>הסבר יתר — הסיפור מסביר יותר מדי</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="twist צפוי"><span>ה-twist צפוי מראש</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="חוסר עקביות"><span>חוסר עקביות — הסיפור סותר את עצמו</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="קריינות לא מתאימה"><span>הקריינות לא מתאימה לאווירה</span></label>
-      <label class="oitem"><input type="checkbox" name="q16" value="שמענו כבר"><span>התחושה ש"שמענו את זה כבר"</span></label>
-    </div></div>
-</div>
-
 <div class="div">ו</div>
 
 <!-- F -->
@@ -367,37 +264,6 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 
   var SHEET_URL='https://api.sheety.co/7a2026bef2613e6ceff7b70fe9ded215/%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA%20%D7%A1%D7%A7%D7%A8%20%D7%90%D7%99%D7%9E%D7%94/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%9F1';
 
-  // IMAGE CARDS
-  function handleCardClick(card){
-    var setId=card.dataset.set,val=card.dataset.val,rev=card.dataset.rev;
-    if(!setId||!val)return;
-    // Check if already selected
-    if(card.classList.contains('on'))return;
-    var key=setId.replace('set','s');
-    answers[key]=val;
-    document.getElementById('q_'+setId).value=val;
-    // Update all cards in set
-    var allCards=document.getElementById(setId).querySelectorAll('.icard');
-    allCards.forEach(function(c){
-      c.classList.remove('on');
-      c.classList.add('dim');
-    });
-    card.classList.remove('dim');
-    card.classList.add('on');
-    // Show reveal
-    var n=setId.slice(-1);
-    document.getElementById('r'+n+'t').textContent=rev;
-    document.getElementById('r'+n).classList.add('show');
-    if(answers.s1&&answers.s2&&answers.s3)calcProf();
-  }
-
-  // Attach to all cards immediately
-  document.querySelectorAll('.icard').forEach(function(card){
-    card.addEventListener('click',function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      handleCardClick(card);
-    });
   });
 
   // VS BUTTONS
@@ -408,14 +274,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
     vs.classList.add('on');
     document.getElementById(vs.dataset.inp).value=vs.dataset.val;
   });
-
-  function calcProf(){
-    var a=[answers.s1,answers.s2,answers.s3],iso=0,unc=0,pre=0;
-    a.forEach(function(x){
-      if(isoIds.indexOf(x)>-1)iso++;
-      if(uncannyIds.indexOf(x)>-1)unc++;
-      if(presIds.indexOf(x)>-1)pre++;
-    });
+);
     var p=iso>=unc&&iso>=pre?'iso':unc>=pre?'unc':'pre';
     document.getElementById('q_prof').value=p;
     document.getElementById('profwrap').style.display='block';
