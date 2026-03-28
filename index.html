@@ -192,7 +192,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 
   <div class="qb"><div class="qnum">11</div><label class="qlabel">מה הכי חשוב לך בסיפור טוב? <span class="pill">בחר עד 3</span></label>
     <div class="opts">
-      <label class="oitem"><input type="checkbox" name="q11" value="קצב"><span>קצב שמושך קדימה</span></label>
+      <label class="oitem"><input type="checkbox" name="q11" value="עומק"><span>סיפור עמוק ועשיר</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="דמות"><span>דמות שאפשר להזדהות איתה</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="סכנה גוברת"><span>תחושת סכנה הולכת וגוברת</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="לא יודע מה יקרה"><span>לא יודע מה יקרה בסוף</span></label>
@@ -209,7 +209,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
   <div class="sec-head"><div class="sec-letter">ו</div><div class="sec-title">בלי לחשוב יותר מדי</div><div class="sec-sub">אסוציאציות ותת-מודע</div></div>
 
   <div class="qb"><div class="qnum">17</div><label class="qlabel" for="q17">השלם את המשפט: "סיפור טוב באמת מפחיד אותי כשהוא..."</label>
-    <textarea id="q17" name="q17" placeholder="..."></textarea></div>
+    <textarea id="q17" name="q17" placeholder="השלם/י כאן..."></textarea></div>
 
   <div class="qb"><div class="qnum">18–21</div><label class="qlabel">מה מפחיד יותר? בחר אחד מכל זוג:</label>
     <div style="margin-top:.5rem;display:flex;flex-direction:column;gap:8px">
@@ -255,9 +255,10 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
   <div class="done-title">הגעתם עד לכאן! פשיייי יא תותחים!</div>
   <div class="done-sub">מעריך את הזמן שהשקעתם.<br>
   עכשיו לחצו על הכפתור פה ותגרילו קריפיפסטה שבאופן מקרי (או שלא)<br>תושמע לכם בהתבסס על התשובות שלכם 👇</div>
-  <div id="analysis-box" style="background:#0a0014;border:.5px solid #6b21a8;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;text-align:right;display:none">
-    <div style="font-size:10px;color:#a855f7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">הפרופיל שלך כמאזין</div>
-    <div id="analysis-text" style="font-size:14px;color:#d4d4d4;line-height:1.8;font-family:'Assistant',sans-serif"></div>
+  <div id="analysis-box" style="background:#0a0014;border:1.5px solid #6b21a8;border-radius:18px;padding:2rem;margin-bottom:2rem;text-align:right;display:none;max-width:560px;margin-left:auto;margin-right:auto">
+    <div style="font-size:10px;color:#a855f7;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">הפרופיל שלך כמאזין</div>
+    <div id="analysis-title" style="font-size:22px;font-weight:700;color:#c084fc;font-family:'Assistant',sans-serif;margin-bottom:1rem"></div>
+    <div id="analysis-text" style="font-size:15px;color:#d4d4d4;line-height:1.9;font-family:'Assistant',sans-serif"></div>
   </div>
   <button class="lottery-btn" id="lottery-btn" onclick="drawVideo()">
     <span>🎲</span> להגרלת קריפיפסטה
@@ -318,18 +319,25 @@ document.addEventListener('DOMContentLoaded',function(){
     var Tmit = fem ? 'מאזינה' : 'מאזין';
     var Tmexx = fem ? 'מחפשת' : 'מחפש';
     var Tptuxa = fem ? 'פתוחה' : 'פתוח';
-    var Tmeuzemet = fem ? 'מאוזנת' : 'מאוזן';
-    var shel = fem ? 'שלך' : 'שלך';
     var parts = [];
+    var title = '';
 
     var nostalgic = parseInt(data.nostalgic)||parseInt(data.q7)||0;
-    if(nostalgic >= 4) parts.push(T+' '+Tmit+' נוסטלגי'+( fem?'ת':'')+' ש'+Tmexx+' את תחושת הקלאסיקה — סיפורים שמזכירים לך את ימי הקריפיפסטה הגדולים.');
-    else if(nostalgic <= 2) parts.push('מקומה של הנוסטלגיה בכבודה אבל '+T+' צמא'+(fem?'ה':'')+' לקריפיפסטות בעולמות חדשים ומסקרנים.');
-    else parts.push(T+' '+Tmit+' מאוזן'+(fem?'ת':'')+' — נהנה'+(fem?'ת':'')+' מהנוסטלגיה אבל '+Tptuxa+' לרעיונות חדשים.');
+    if(nostalgic >= 4){
+      title = fem ? 'מאזינה של הימים הטובים' : 'מאזין של הימים הטובים';
+      parts.push(T+' '+Tmit+' נוסטלגי'+(fem?'ת':'')+' ש'+Tmexx+' את תחושת הקלאסיקה — סיפורים שמזכירים לך את ימי הקריפיפסטה הגדולים.');
+    } else if(nostalgic <= 2){
+      title = fem ? 'הרפתקנית' : 'הרפתקן';
+      parts.push('מקומה של הנוסטלגיה בכבודה אבל '+T+' צמא'+(fem?'ה':'')+' לקריפיפסטות בעולמות חדשים ומסקרנים.');
+    } else {
+      title = fem ? 'נהנית מכל העולמות' : 'נהנה מכל העולמות';
+      parts.push(T+' '+Tmit+' מאוזן'+(fem?'ת':'')+' — נהנה'+(fem?'ת':'')+' מהנוסטלגיה אבל '+Tptuxa+' לרעיונות חדשים.');
+    }
 
     var important = data.important || data.q11 || '';
     if(important.includes('קריינות')) parts.push('עולם הסאונד הוא הכל עבורך — קריינות טובה ואטמוספרה מתאימה יכולה להציל סיפור בינוני.');
     if(important.includes('דמות')) parts.push(T+' '+Tmexx+' את העומק בדמויות, להיקשר אליהן, לחוות איתן — ולא רק לפחד מהאיום.');
+    if(important.includes('עומק')) parts.push(T+(fem?' מחפשת':' מחפש')+' סיפורים עשירים עם שכבות — לא רק מה שנראה על פני השטח.');
     if(important.includes('לא יודע מה יקרה')||important.includes('סיום מפתיע')) parts.push(T+(fem?' אוכלת':' אוכל')+' מתח לארוחת בוקר, וכשסיפור מציג לך בסוף משהו שלא ציפית אליו — '+T+' בעננים.');
 
     if(data.vs3 === 'לא לדעת מה קורה') parts.push('אי-הוודאות מפחיד'+(fem?'ה':'')+' אותך יותר מהאיום עצמו.');
@@ -337,8 +345,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
     if(data.vs4 === 'איום שמרגיש אבל לא נראה') parts.push(T+' '+(fem?'מפחדת':'מפחד')+' מהבלתי-נראה — מה שהדמיון שלך בונה תמיד גרוע יותר מכל מה שבאמת נמצא שם.');
 
-    if(parts.length === 0) return null;
-    return parts.join(' ');
+    return {title: title, text: parts.join(' ')};
   }
 
   var form=document.getElementById('sf');
@@ -379,9 +386,11 @@ document.addEventListener('DOMContentLoaded',function(){
       // Generate analysis
       var analysis = generateAnalysis(data);
       var box = document.getElementById('analysis-box');
+      var ttl = document.getElementById('analysis-title');
       var txt = document.getElementById('analysis-text');
-      if(box && txt && analysis){
-        txt.textContent = analysis;
+      if(box && analysis && analysis.text){
+        if(ttl) ttl.textContent = analysis.title;
+        if(txt) txt.textContent = analysis.text;
         box.style.display = 'block';
       }
       document.getElementById('done').classList.add('show');
