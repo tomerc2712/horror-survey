@@ -61,7 +61,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 .slabel{font-size:11px;color:var(--txd)}
 
 .vs-row{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin-bottom:8px}
-.vsopt{padding:.65rem .75rem;border-radius:3px;border:.5px solid #1c1c1c;background:#080808;font-size:12px;color:var(--txm);text-align:center;cursor:pointer;transition:all .15s;line-height:1.4}
+.vsopt{padding:.65rem .75rem;border-radius:3px;border:.5px solid #1c1c1c;background:#080808;font-size:14px;color:var(--txm);text-align:center;cursor:pointer;transition:all .15s;line-height:1.4;font-family:'Rubik',sans-serif;-webkit-appearance:none;appearance:none;width:100%;position:relative;z-index:10}
 .vsopt:hover{border-color:var(--red);color:var(--tx)}
 .vsopt.on{background:#0d0000;border-color:var(--red-b);color:#e0e0e0}
 .vsmid{font-size:10px;color:var(--red);font-family:'Rubik Mono One',monospace;text-align:center;padding:0 3px}
@@ -207,22 +207,24 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
       <div class="vs-row">
         <div class="vsopt" data-inp="vs1" data-val="להיות לבד">להיות לבד</div>
         <div class="vsmid">VS</div>
-        <div class="vsopt" data-inp="vs1" data-val="להיות עם מישהו שאינך מכיר">להיות עם מישהו שאינך מכיר</div>
+        <button type="button" class="vsopt" data-inp="vs1" data-val="להיות לבד">להיות לבד</button>
+        <div class="vsmid">VS</div>
+        <button type="button" class="vsopt" data-inp="vs1" data-val="להיות עם מישהו שאינך מכיר">להיות עם מישהו שאינך מכיר</button>
       </div>
       <div class="vs-row">
-        <div class="vsopt" data-inp="vs2" data-val="לראות משהו מפחיד">לראות משהו מפחיד</div>
+        <button type="button" class="vsopt" data-inp="vs2" data-val="לראות משהו מפחיד">לראות משהו מפחיד</button>
         <div class="vsmid">VS</div>
-        <div class="vsopt" data-inp="vs2" data-val="לשמוע משהו מפחיד">לשמוע משהו מפחיד</div>
+        <button type="button" class="vsopt" data-inp="vs2" data-val="לשמוע משהו מפחיד">לשמוע משהו מפחיד</button>
       </div>
       <div class="vs-row">
-        <div class="vsopt" data-inp="vs3" data-val="לא לדעת מה קורה">לא לדעת מה קורה</div>
+        <button type="button" class="vsopt" data-inp="vs3" data-val="לא לדעת מה קורה">לא לדעת מה קורה</button>
         <div class="vsmid">VS</div>
-        <div class="vsopt" data-inp="vs3" data-val="לדעת בדיוק מה הולך לקרות">לדעת בדיוק מה הולך לקרות</div>
+        <button type="button" class="vsopt" data-inp="vs3" data-val="לדעת בדיוק מה הולך לקרות">לדעת בדיוק מה הולך לקרות</button>
       </div>
       <div class="vs-row">
-        <div class="vsopt" data-inp="vs4" data-val="מפלצת שנראית">מפלצת שנראית</div>
+        <button type="button" class="vsopt" data-inp="vs4" data-val="מפלצת שנראית">מפלצת שנראית</button>
         <div class="vsmid">VS</div>
-        <div class="vsopt" data-inp="vs4" data-val="איום שמרגיש אבל לא נראה">איום שמרגיש אבל לא נראה</div>
+        <button type="button" class="vsopt" data-inp="vs4" data-val="איום שמרגיש אבל לא נראה">איום שמרגיש אבל לא נראה</button>
       </div>
     </div>
     <input type="hidden" id="vs1" name="vs1">
