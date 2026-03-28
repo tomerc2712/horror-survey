@@ -8,9 +8,9 @@
 <style>
 :root{--red:#8B0000;--red-b:#c0392b;--pur:#6b21a8;--pur-l:#a855f7;--blk:#050505;--blk2:#0d0d0d;--blk3:#141414;--tx:#d4d4d4;--txm:#777;--txd:#3a3a3a}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;font-size:17px}
 .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 100%,rgba(139,0,0,.09) 0%,transparent 60%),radial-gradient(ellipse at 15% 60%,rgba(45,0,64,.14) 0%,transparent 50%),radial-gradient(ellipse at 85% 30%,rgba(45,0,64,.1) 0%,transparent 40%)}
-.trees{position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:0;pointer-events:none;opacity:.35;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23111'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%230a0a0a'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23111'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%230a0a0a'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23111'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%230a0a0a'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23111'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%230a0a0a'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23111'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%230a0a0a'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23111'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%230a0a0a'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23111'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%230a0a0a'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23111'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%230a0a0a'/%3E%3C/svg%3E") bottom/cover no-repeat}
+.trees{position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:0;pointer-events:none;opacity:.6;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23111'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%230a0a0a'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23111'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%230a0a0a'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23111'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%230a0a0a'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23111'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%230a0a0a'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23111'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%230a0a0a'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23111'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%230a0a0a'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23111'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%230a0a0a'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23111'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%230a0a0a'/%3E%3C/svg%3E") bottom/cover no-repeat}
 .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 1.25rem 6rem}
 
 .hero{text-align:center;padding:4rem 1rem 3rem;position:relative}
@@ -35,11 +35,11 @@ body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-w
 .qnum{font-size:10px;color:var(--red-b);letter-spacing:.1em;margin-bottom:.4rem;font-family:'Rubik Mono One',monospace}
 .qlabel{font-size:16px;color:var(--tx);line-height:1.6;margin-bottom:.85rem;display:block}
 
-input[type=text],input[type=number],textarea{width:100%;background:#080808;border:.5px solid #252525;border-radius:3px;color:#d4d4d4;font-family:'Rubik',sans-serif;font-size:15px;font-weight:300;padding:.65rem .9rem;outline:none;transition:border-color .2s;resize:vertical;-webkit-appearance:none}
+input[type=text],input[type=number],textarea{width:100%;background:#080808;border:.5px solid #252525;border-radius:3px;color:#c084fc;font-family:'Rubik',sans-serif;font-size:15px;font-weight:300;padding:.65rem .9rem;outline:none;transition:border-color .2s;resize:vertical;-webkit-appearance:none}
 input[type=text]:focus,input[type=number]:focus,textarea:focus{border-color:var(--red-b)}
 textarea{min-height:88px;line-height:1.65}
 input[type=number]{max-width:110px}
-input::placeholder,textarea::placeholder{color:#3a3a3a}
+input::placeholder,textarea::placeholder{color:#7c3aed}
 
 .opts{display:flex;flex-direction:column;gap:5px}
 .oitem{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:.5rem .7rem;border-radius:3px;border:.5px solid transparent;transition:background .15s,border-color .15s}
@@ -66,12 +66,12 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
 .imgset{margin-bottom:1.25rem}
 .isetlbl{font-size:10px;color:var(--txd);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
 .igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.icard{aspect-ratio:4/3;border-radius:4px;border:.5px solid #1c1c1c;background:var(--blk3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .2s;padding:0;-webkit-appearance:none;appearance:none;font-family:inherit;outline:none}
+.icard{aspect-ratio:4/3;border-radius:4px;border:1.5px solid #2a2a2a;background:var(--blk3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .2s;padding:0;-webkit-appearance:none;appearance:none;font-family:inherit;outline:none;user-select:none}
 .icard:hover{border-color:var(--red-b);background:#0d0000}
 .icard.on{border:1.5px solid var(--red-b)!important;background:#120000!important;opacity:1!important;cursor:default}
 .icard.dim{opacity:.2;cursor:not-allowed}
-.iemoji{font-size:26px;line-height:1;pointer-events:none}
-.icap{font-size:9px;color:var(--txm);text-align:center;padding:0 4px;line-height:1.3;pointer-events:none}
+.iemoji{font-size:32px;line-height:1;pointer-events:none}
+.icap{font-size:11px;color:var(--txm);text-align:center;padding:0 6px;line-height:1.3;pointer-events:none}
 
 .rbox{margin-top:.875rem;padding:.75rem 1rem;border-radius:3px;background:#06020d;border:.5px solid #200040;border-right:2px solid var(--pur);display:none}
 .rbox.show{display:block}
@@ -161,17 +161,11 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
 <div class="sec">
   <div class="sec-head"><div class="sec-letter">ב</div><div class="sec-title">קריפיפסטה ישראלית</div><div class="sec-sub">זהות ותוכן מקומי</div></div>
 
-  <div class="qb"><div class="qnum">05</div><label class="qlabel">האם אתה מכיר קריפיפסטות שנכתבו בעברית / בהקשר ישראלי?</label>
+  <div class="qb"><div class="qnum">05</div><label class="qlabel">האם היית רוצה לשמוע קריפיפסטות על מקומות ואגדות ישראליות?</label>
     <div class="opts">
-      <label class="oitem"><input type="radio" name="q5" value="כן"><span>כן</span></label>
-      <label class="oitem"><input type="radio" name="q5" value="לא"><span>לא</span></label>
-    </div></div>
-
-  <div class="qb"><div class="qnum">06</div><label class="qlabel">האם היית רוצה לקרוא קריפיפסטות שמשתמשות במקומות / אגדות / פולקלור ישראלי?</label>
-    <div class="opts">
-      <label class="oitem"><input type="radio" name="q6" value="בהחלט"><span>בהחלט</span></label>
-      <label class="oitem"><input type="radio" name="q6" value="אולי"><span>אולי</span></label>
-      <label class="oitem"><input type="radio" name="q6" value="לא מעניין אותי"><span>לא מעניין אותי</span></label>
+      <label class="oitem"><input type="radio" name="q5" value="כן בהחלט"><span>כן בהחלט — זה מה שחסר</span></label>
+      <label class="oitem"><input type="radio" name="q5" value="אולי"><span>אולי, תלוי בביצוע</span></label>
+      <label class="oitem"><input type="radio" name="q5" value="לא מעניין"><span>לא מעניין אותי</span></label>
     </div></div>
 
   <div class="qb"><div class="qnum">07</div><label class="qlabel">עד כמה חשוב לך שהקהילה תשמור על הטון הנוסטלגי הקלאסי לעומת סיפורים מחודשים?</label>
@@ -207,22 +201,15 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
       <label class="oitem"><input type="radio" name="q10" value="הכפר"><span>גיליתי שהכפר שבו גדלתי לא מופיע באף מפה</span></label>
     </div></div>
 
-  <div class="qb"><div class="qnum">11</div><label class="qlabel">מה הגורם הכי חזק שגורם לך להמשיך להאזין? <span class="pill">בחירה מרובה</span></label>
+  <div class="qb"><div class="qnum">11</div><label class="qlabel">מה הכי חשוב לך בסיפור טוב? <span class="pill">בחר עד 3</span></label>
     <div class="opts">
       <label class="oitem"><input type="checkbox" name="q11" value="קצב"><span>קצב שמושך קדימה</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="דמות"><span>דמות שאפשר להזדהות איתה</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="סכנה גוברת"><span>תחושת סכנה הולכת וגוברת</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="לא יודע מה יקרה"><span>לא יודע מה יקרה בסוף</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="סגנון"><span>סגנון הסיפור / השפה</span></label>
+      <label class="oitem"><input type="checkbox" name="q11" value="סיום מפתיע"><span>סיום שלא ציפית אליו</span></label>
       <label class="oitem"><input type="checkbox" name="q11" value="קריינות"><span>הקריינות עצמה</span></label>
-    </div></div>
-
-  <div class="qb"><div class="qnum">12</div><label class="qlabel">מה הסיום שהכי עובד עליך בקריפיפסטה?</label>
-    <div class="opts">
-      <label class="oitem"><input type="radio" name="q12" value="פתוח"><span>מסתורי ופתוח — לא מסביר הכל</span></label>
-      <label class="oitem"><input type="radio" name="q12" value="מוסבר-מפחיד"><span>מוסבר, אבל מה שהתגלה מפחיד יותר מהדמיון</span></label>
-      <label class="oitem"><input type="radio" name="q12" value="טראגי"><span>טראגי — הגיבור לא שורד</span></label>
-      <label class="oitem"><input type="radio" name="q12" value="שאלה שנשארת"><span>שאלה שנשארת איתך אחרי שנגמר</span></label>
     </div></div>
 </div>
 
@@ -285,16 +272,14 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
 <div class="sec">
   <div class="sec-head"><div class="sec-letter">ה</div><div class="sec-title">ביקורת כנה</div><div class="sec-sub">אנונימי לחלוטין</div></div>
 
-  <div class="qb"><div class="qnum">13</div><label class="qlabel" for="q13">תן דוגמה לסיפור שעבד מצוין — ומה בדיוק עבד בו?</label>
-    <textarea id="q13" name="q13" placeholder="איך היית מתאר אותו לחבר/ה הכי טוב שלך?"></textarea></div>
+  <div class="qb"><div class="qnum">13</div><label class="qlabel" for="q13">מה הקריפיפסטה הכי אהובה עליך ולמה?</label>
+    <textarea id="q13" name="q13" placeholder="איך היית מתאר אותה לחבר/ה הכי טוב שלך?"></textarea></div>
 
-  <div class="qb"><div class="qnum">14</div><label class="qlabel" for="q14">מה דבר אחד בתוכן שלי שאת/ה פחות אוהב/ת, או שאפשר לשפר?</label>
-    <textarea id="q14" name="q14" placeholder="בטוח יש משהו אחד ;)"></textarea></div>
 
   <div class="qb"><div class="qnum">15</div><label class="qlabel" for="q15">אם היית יכול לומר לי דבר אחד שאף אחד לא מעז לומר לי — מה זה היה?</label>
-    <textarea id="q15" name="q15" placeholder="הכל טוב, זה אנונימי, וכנות עוזרת יותר מהתחנפות!"></textarea></div>
+    <textarea id="q15" name="q15" placeholder="הכל טוב, אתם אנונימיים - וכנות תמיד עוזרת!"></textarea></div>
 
-  <div class="qb"><div class="qnum">16</div><label class="qlabel">מה גורם לסיפור להרגיש "זול"? <span class="pill">בחירה מרובה</span></label>
+  <div class="qb"><div class="qnum">16</div><label class="qlabel">מה גורם לקריפיפסטה להרגיש "זולה"? <span class="pill">בחירה מרובה</span></label>
     <div class="opts">
       <label class="oitem"><input type="checkbox" name="q16" value="קצב מהיר"><span>קצב מהיר מדי, בלי בניית מתח</span></label>
       <label class="oitem"><input type="checkbox" name="q16" value="דמויות שטוחות"><span>דמויות שטוחות שאי אפשר להזדהות איתן</span></label>
@@ -378,39 +363,31 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
 
   var VIDEO_IDS=['eKU6Gl6cBz4','GIQ0PdCOkLw','bMPTyNW3qkA','G2-wOi_H9S4','HZV3uF-ABjw','mAI0JDnK07A','9WTtAv-4KWQ','5tg0X8k7tv0','M_NIU-Sq3O0','925acSqDtoA','0H8feqG2zOk','eUkr-aHTqAM','kdUulxOdO3M','GhrxOTGzRow','qEh3osh9Bbk'];
 
-  var SHEET_URL='https://script.google.com/macros/s/AKfycby8nGQVbeJ9-ZjiqHbPWjK4zuQmZUBYpx7RHU5pPdQVB_ETaE1ocjPY06_zuYr9OSiV/exec';
+  var SHEET_URL='https://api.sheety.co/7a2026bef2613e6ceff7b70fe9ded215/%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA%20%D7%A1%D7%A7%D7%A8%20%D7%90%D7%99%D7%9E%D7%94/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%9F1';
 
-  // IMAGE CARDS — attach directly to each card, not via delegation
-  function initCards(){
-    document.querySelectorAll('.icard').forEach(function(card){
-      card.addEventListener('click',function(){
-        if(card.classList.contains('dim'))return;
-        var setId=card.dataset.set,val=card.dataset.val,rev=card.dataset.rev;
-        if(!setId||!val)return;
-        var key=setId.replace('set','s');
-        answers[key]=val;
-        document.getElementById('q_'+setId).value=val;
-        // dim all in this set, then un-dim the chosen one
-        document.getElementById(setId).querySelectorAll('.icard').forEach(function(c){
-          c.classList.add('dim');
-          c.classList.remove('on');
-        });
-        card.classList.remove('dim');
-        card.classList.add('on');
-        // show reveal
-        var n=setId.slice(-1);
-        document.getElementById('r'+n+'t').textContent=rev;
-        document.getElementById('r'+n).classList.add('show');
-        if(answers.s1&&answers.s2&&answers.s3)calcProf();
-      });
+  // IMAGE CARDS
+  function handleCardClick(card){
+    if(card.classList.contains('dim'))return;
+    var setId=card.dataset.set,val=card.dataset.val,rev=card.dataset.rev;
+    if(!setId||!val)return;
+    var key=setId.replace('set','s');
+    answers[key]=val;
+    document.getElementById('q_'+setId).value=val;
+    document.getElementById(setId).querySelectorAll('.icard').forEach(function(c){
+      c.classList.add('dim');c.classList.remove('on');
     });
+    card.classList.remove('dim');card.classList.add('on');
+    var n=setId.slice(-1);
+    document.getElementById('r'+n+'t').textContent=rev;
+    document.getElementById('r'+n).classList.add('show');
+    if(answers.s1&&answers.s2&&answers.s3)calcProf();
   }
-  // run after DOM ready
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',initCards);
-  } else {
-    initCards();
-  }
+
+  // Use both click and touchend for maximum compatibility
+  document.querySelectorAll('.icard').forEach(function(card){
+    card.addEventListener('click',function(e){e.preventDefault();handleCardClick(card);});
+    card.addEventListener('touchend',function(e){e.preventDefault();handleCardClick(card);});
+  });
 
   // VS BUTTONS
   document.addEventListener('click',function(e){
@@ -460,46 +437,12 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
   var SHEET_ID='11ouwVZopxBzDs33AakcplRwDpBYsZ_Y93017q28RYc8';
   var gToken=null;
 
-  // Load Google Identity Services
-  var gisScript=document.createElement('script');
-  gisScript.src='https://accounts.google.com/gsi/client';
-  gisScript.async=true;
-  document.head.appendChild(gisScript);
-
-  function getToken(callback){
-    if(gToken){callback(gToken);return;}
-    google.accounts.oauth2.initTokenClient({
-      client_id:CLIENT_ID,
-      scope:'https://www.googleapis.com/auth/spreadsheets',
-      callback:function(resp){
-        if(resp.access_token){gToken=resp.access_token;callback(gToken);}
-      }
-    }).requestAccessToken();
-  }
-
-  function writeToSheet(data,token){
-    var row=[
-      data.timestamp||'',data.q1||'',data.q2||'',data.q3||'',
-      data.q4||'',data.q5||'',data.q6||'',data.q7||'',
-      data.q8||'',data.q9||'',data.q10||'',data.q11||'',
-      data.q12||'',data.q_s1||'',data.q_s2||'',data.q_s3||'',
-      data.q_prof||'',data.q13||'',data.q14||'',data.q15||'',
-      data.q16||'',data.q17||'',data.vs1||'',data.vs2||'',
-      data.vs3||'',data.vs4||'',data.q22||''
-    ];
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/'+SHEET_ID+'/values/Sheet1!A1:AA1:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},
-      body:JSON.stringify({values:[row]})
-    }).catch(function(){});
-  }
-
   document.getElementById('sf').addEventListener('submit',function(e){
     e.preventDefault();
     var data={timestamp:new Date().toISOString()};
     new FormData(this).forEach(function(v,k){data[k]=data[k]?data[k]+'|'+v:v});
 
-    fetch('https://api.sheety.co/7a2026bef2613e6ceff7b70fe9ded215/%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA%20%D7%A1%D7%A7%D7%A8%20%D7%90%D7%99%D7%9E%D7%94/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%9F1',{
+    fetch(SHEET_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({גיליון1:{
@@ -508,20 +451,17 @@ input::placeholder,textarea::placeholder{color:#3a3a3a}
         פעםאחרונהיוטיוב:data.q2||'',
         ספייסיקראפ:data.q3||'',
         רגשראשון:data.q4||'',
-        מכירעברית:data.q5||'',
-        פולקלור:data.q6||'',
+        ישראלי:data.q5||'',
         טוןנוסטלגי:data.q7||'',
         דמותזכורה:data.q8||'',
         ציפיתליותר:data.q9||'',
         כותרתמסקרנת:data.q10||'',
-        גורםלהמשיך:data.q11||'',
-        סיוםמועדף:data.q12||'',
+        חשובבסיפור:data.q11||'',
         תמונהסט1:data.q_s1||'',
         תמונהסט2:data.q_s2||'',
         תמונהסט3:data.q_s3||'',
         פרופילפחד:data.q_prof||'',
-        סיפורשעבד:data.q13||'',
-        שיפורבתוכן:data.q14||'',
+        קריפיפסטהאהובה:data.q13||'',
         דברשאףאחדלאאומר:data.q15||'',
         גורםלזול:data.q16||'',
         משפטלאשלם:data.q17||'',
