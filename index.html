@@ -70,8 +70,8 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 .pcard.on .pcard.on .pill{font-size:10px;padding:2px 8px;border-radius:2px;background:#1a0808;color:var(--red-b);border:.5px solid #3a0a0a}
 
 .sub-wrap{text-align:center;margin-top:2.5rem}
-.sub-btn{padding:.9rem 2.5rem;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.06em;transition:background .2s}
-.sub-btn:hover{background:var(--red-b)}
+.sub-btn{padding:.9rem 2.5rem;background:#6b21a8;color:#fff;border:none;border-radius:12px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.06em;transition:background .2s}
+.sub-btn:hover{background:#7c3aed}
 .sub-note{font-size:11px;color:var(--txd);margin-top:.75rem}
 
 .done{display:none;text-align:center;padding:3rem 1.5rem;border-radius:16px;border:.5px solid var(--red);background:var(--blk2)}
@@ -209,7 +209,7 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
   <div class="sec-head"><div class="sec-letter">ו</div><div class="sec-title">בלי לחשוב יותר מדי</div><div class="sec-sub">אסוציאציות ותת-מודע</div></div>
 
   <div class="qb"><div class="qnum">17</div><label class="qlabel" for="q17">השלם את המשפט: "סיפור טוב באמת מפחיד אותי כשהוא..."</label>
-    <textarea id="q17" name="q17" placeholder="השלם/י כאן..."></textarea></div>
+    <textarea id="q17" name="q17" placeholder="השלם/י כאן..." id="q17-input"></textarea></div>
 
   <div class="qb"><div class="qnum">18–21</div><label class="qlabel">מה מפחיד יותר? בחר אחד מכל זוג:</label>
     <div style="margin-top:.5rem;display:flex;flex-direction:column;gap:8px">
@@ -281,6 +281,8 @@ document.addEventListener('DOMContentLoaded',function(){
       var fem = r.value === 'נקבה';
       var q1l = document.getElementById('q1-label');
       if(q1l) q1l.textContent = fem ? 'בת כמה את?' : r.value==='זכר' ? 'בן כמה אתה?' : 'בני כמה אתם/ן?';
+      var q17i = document.getElementById('q17-input');
+      if(q17i) q17i.placeholder = fem ? 'השלימי כאן...' : 'השלם כאן...';
     });
   });
 
