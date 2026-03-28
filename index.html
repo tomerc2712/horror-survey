@@ -35,7 +35,7 @@ body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-w
 .sec-title{font-size:13px;font-weight:500;color:#ddd;letter-spacing:.04em}
 .sec-sub{font-size:11px;color:var(--txd);margin-right:auto}
 
-.qb{margin-bottom:1.25rem;padding:1.25rem;border-radius:4px;border:.5px solid #1c1c1c;background:var(--blk2);border-right:2px solid var(--red)}
+.qb{margin-bottom:1.25rem;padding:1.25rem;border-radius:12px;border:.5px solid #1c1c1c;background:var(--blk2);border-right:3px solid var(--red)}
 .qnum{font-size:10px;color:var(--red-b);letter-spacing:.1em;margin-bottom:.4rem;font-family:'Rubik Mono One',monospace}
 .qlabel{font-size:16px;color:var(--tx);line-height:1.6;margin-bottom:.85rem;display:block}
 
@@ -46,40 +46,40 @@ input[type=number]{max-width:110px}
 input::placeholder,textarea::placeholder{color:#7c3aed}
 
 .opts{display:flex;flex-direction:column;gap:5px}
-.oitem{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:.5rem .7rem;border-radius:3px;border:.5px solid transparent;transition:background .15s,border-color .15s}
+.oitem{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:.5rem .7rem;border-radius:10px;border:.5px solid transparent;transition:background .15s,border-color .15s}
 .oitem:hover{background:#0f0f0f;border-color:#1f1f1f}
 .oitem input{margin-top:2px;flex-shrink:0;accent-color:var(--red-b);cursor:pointer;width:15px;height:15px}
 .oitem span{font-size:15px;color:var(--txm);line-height:1.5}
-.oitem:has(input:checked){background:#0d0000;border-color:#2d0808}
-.oitem:has(input:checked) span{color:#e0e0e0}
+.oitem:has(input:checked){background:#1a0030;border-color:#6b21a8}
+.oitem:has(input:checked) span{color:#c084fc}
 
 .scale-row{display:flex;align-items:center;gap:10px;margin-top:.25rem;flex-wrap:wrap}
 .scale-btns{display:flex;gap:6px}
-.sbtn{width:40px;height:40px;border-radius:3px;border:.5px solid #252525;background:#080808;color:var(--txm);font-size:14px;font-family:'Rubik Mono One',monospace;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.sbtn{width:40px;height:40px;border-radius:10px;border:.5px solid #252525;background:#080808;color:var(--txm);font-size:14px;font-family:'Rubik Mono One',monospace;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
 .sbtn:hover{border-color:var(--red);color:#fff}
-.sbtn.on{background:var(--red);border-color:var(--red);color:#fff}
+.sbtn.on{background:#6b21a8;border-color:#a855f7;color:#fff}
 .slabels{display:flex;gap:6px;flex-wrap:wrap}
 .slabel{font-size:11px;color:var(--txd)}
 
 .vs-row{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin-bottom:8px}
-.vsopt{padding:.65rem .75rem;border-radius:3px;border:.5px solid #1c1c1c;background:#080808;font-size:14px;color:var(--txm);text-align:center;cursor:pointer;transition:all .15s;line-height:1.4;font-family:'Rubik',sans-serif;-webkit-appearance:none;appearance:none;width:100%;position:relative;z-index:10}
+.vsopt{padding:.65rem .75rem;border-radius:10px;border:.5px solid #1c1c1c;background:#080808;font-size:14px;color:var(--txm);text-align:center;cursor:pointer;transition:all .15s;line-height:1.4;font-family:'Rubik',sans-serif;-webkit-appearance:none;appearance:none;width:100%;position:relative;z-index:10}
 .vsopt:hover{border-color:var(--red);color:var(--tx)}
-.vsopt.on{background:#0d0000;border-color:var(--red-b);color:#e0e0e0}
+.vsopt.on{background:#1a0030;border-color:#a855f7;color:#c084fc}
 .vsmid{font-size:10px;color:var(--red);font-family:'Rubik Mono One',monospace;text-align:center;padding:0 3px}
 
 .pcard.on .pcard.on .pill{font-size:10px;padding:2px 8px;border-radius:2px;background:#1a0808;color:var(--red-b);border:.5px solid #3a0a0a}
 
 .sub-wrap{text-align:center;margin-top:2.5rem}
-.sub-btn{padding:.9rem 2.5rem;background:var(--red);color:#fff;border:none;border-radius:3px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.06em;transition:background .2s}
+.sub-btn{padding:.9rem 2.5rem;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.06em;transition:background .2s}
 .sub-btn:hover{background:var(--red-b)}
 .sub-note{font-size:11px;color:var(--txd);margin-top:.75rem}
 
-.done{display:none;text-align:center;padding:3rem 1.5rem;border-radius:4px;border:.5px solid var(--red);background:var(--blk2)}
+.done{display:none;text-align:center;padding:3rem 1.5rem;border-radius:16px;border:.5px solid var(--red);background:var(--blk2)}
 .done.show{display:block}
 .done-icon{font-size:36px;margin-bottom:1rem}
 .done-title{font-family:'Assistant',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:.5rem}
 .done-sub{font-size:14px;color:var(--txm);line-height:1.8;font-family:'Assistant',sans-serif;margin-bottom:2rem}
-.lottery-btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2.25rem;background:var(--red);color:#fff;border:none;border-radius:4px;font-family:'Assistant',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s,transform .1s;margin-bottom:.75rem}
+.lottery-btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2.25rem;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:'Assistant',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s,transform .1s;margin-bottom:.75rem}
 .lottery-btn:hover{background:#a00000;transform:scale(1.03)}
 .lottery-btn:active{transform:scale(.98)}
 .lottery-note{font-size:11px;color:var(--txd);font-family:'Assistant',sans-serif}
@@ -119,11 +119,27 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
   <div class="sec-head"><div class="sec-letter">א</div><div class="sec-title">קצת עליך</div><div class="sec-sub">דמוגרפיה בסיסית</div></div>
 
   <div class="qb"><div class="qnum">01</div><label class="qlabel" for="q1">בני כמה אתם/ן?</label>
-    <input type="number" id="q1" name="q1" placeholder="גיל" min="5" max="99"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="q1" name="q1" style="background:#080808;border:.5px solid #252525;border-radius:10px;color:#c084fc;font-family:'Rubik',sans-serif;font-size:15px;padding:.65rem .9rem;outline:none;flex:1;min-width:140px;-webkit-appearance:none;appearance:none;cursor:pointer">
+        <option value="" disabled selected>בחר גיל...</option>
+        <option value="5-9">5–9</option>
+        <option value="10-12">10–12</option>
+        <option value="13-15">13–15</option>
+        <option value="16-18">16–18</option>
+        <option value="19-22">19–22</option>
+        <option value="23-27">23–27</option>
+        <option value="28-35">28–35</option>
+        <option value="36-45">36–45</option>
+        <option value="46+">46+</option>
+      </select>
+      <span style="color:var(--txd);font-size:13px">או</span>
+      <input type="number" name="q1_manual" placeholder="כתוב בעצמך" min="5" max="99" style="flex:1;min-width:120px;border-radius:10px">
+    </div></div>
 
   <div class="qb"><div class="qnum">02</div><label class="qlabel">מתי בפעם האחרונה צפית בסיפור אימה ביוטיוב?</label>
     <div class="opts">
-      <label class="oitem"><input type="radio" name="q2" value="היום / השבוע"><span>היום / השבוע</span></label>
+      <label class="oitem"><input type="radio" name="q2" value="היום"><span>היום</span></label>
+      <label class="oitem"><input type="radio" name="q2" value="השבוע"><span>השבוע</span></label>
       <label class="oitem"><input type="radio" name="q2" value="לפני כמה שבועות"><span>לפני כמה שבועות</span></label>
       <label class="oitem"><input type="radio" name="q2" value="לפני חודשים"><span>לפני חודשים</span></label>
       <label class="oitem"><input type="radio" name="q2" value="כבר לא זוכר"><span>כבר לא זוכר</span></label>
@@ -247,6 +263,10 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
   <div class="done-title">הגעתם עד לכאן! פשיייי יא תותחים!</div>
   <div class="done-sub">מעריך את הזמן שהשקעתם.<br>
   עכשיו לחצו על הכפתור פה ותגרילו קריפיפסטה שבאופן מקרי (או שלא)<br>תושמע לכם בהתבסס על התשובות שלכם 👇</div>
+  <div id="analysis-box" style="background:#0a0014;border:.5px solid #6b21a8;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;text-align:right;display:none">
+    <div style="font-size:10px;color:#a855f7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">הפרופיל שלך כמאזין</div>
+    <div id="analysis-text" style="font-size:14px;color:#d4d4d4;line-height:1.8;font-family:'Assistant',sans-serif"></div>
+  </div>
   <button class="lottery-btn" id="lottery-btn" onclick="drawVideo()">
     <span>🎲</span> להגרלת קריפיפסטה
   </button>
@@ -290,6 +310,34 @@ document.addEventListener('DOMContentLoaded',function(){
     },1200);
   };
 
+  function generateAnalysis(data){
+    var parts = [];
+
+    // Nostalgia vs innovation
+    var nostalgic = parseInt(data.q7)||0;
+    if(nostalgic >= 4) parts.push('אתה מאזין נוסטלגי שמחפש את תחושת הקלאסי — סיפורים שמזכירים לך את ימי ה-Creepypasta הגדולים.');
+    else if(nostalgic <= 2) parts.push('אתה פתוח לחידושים ומחפש קריפיפסטה שבוטשת גבולות — לא רק מה שהיה.');
+    else parts.push('אתה מאזין מאוזן — נהנה מהנוסטלגיה אבל פתוח לרעיונות חדשים.');
+
+    // What matters in a story
+    var important = data.q11 || '';
+    if(important.includes('קריינות')) parts.push('הקול והביצוע הם הכל עבורך — קריינות טובה יכולה להציל סיפור בינוני.');
+    if(important.includes('דמות')) parts.push('אתה מאזין שמחפש דמויות שאפשר להיקשר אליהן — בלי זה הפחד לא עובד.');
+    if(important.includes('לא יודע מה יקרה')) parts.push('המתח הוא המנוע שלך — אתה אוהב כשהסיפור מפתיע אותך עד הסוף.');
+
+    // VS answers
+    if(data.vs1 === 'להיות לבד') parts.push('הפחד האמיתי שלך הוא בידוד — לא הדבר המפחיד, אלא העובדה שאתה לבד איתו.');
+    else if(data.vs1) parts.push('אתה מפחד יותר מהלא-ידוע האנושי — מה שאנשים זרים עלולים להיות.');
+
+    if(data.vs3 === 'לא לדעת מה קורה') parts.push('אי-הוודאות מפחידה אותך יותר מהאיום עצמו.');
+    else if(data.vs3) parts.push('הידיעה מבעיתה אותך — לדעת מה הולך לקרות ולא יכול לעצור זה גרוע מהכל.');
+
+    if(data.vs4 === 'איום שמרגיש אבל לא נראה') parts.push('אתה מגיב לאיום הבלתי-נראה — מה שהדמיון שלך בונה תמיד גרוע יותר מכל מה שיראו לך.');
+
+    if(parts.length === 0) return null;
+    return parts.join(' ');
+  }
+
   var form=document.getElementById('sf');
   if(form){
     form.addEventListener('submit',function(e){
@@ -324,6 +372,14 @@ document.addEventListener('DOMContentLoaded',function(){
         }})
       }).catch(function(){});
       form.style.display='none';
+      // Generate analysis
+      var analysis = generateAnalysis(data);
+      var box = document.getElementById('analysis-box');
+      var txt = document.getElementById('analysis-text');
+      if(box && txt && analysis){
+        txt.textContent = analysis;
+        box.style.display = 'block';
+      }
       document.getElementById('done').classList.add('show');
       window.scrollTo({top:0,behavior:'smooth'});
       return false;
