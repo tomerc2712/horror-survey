@@ -118,7 +118,14 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 <div class="sec">
   <div class="sec-head"><div class="sec-letter">א</div><div class="sec-title">קצת עליך</div><div class="sec-sub">דמוגרפיה בסיסית</div></div>
 
-  <div class="qb"><div class="qnum">01</div><label class="qlabel" for="q1">בני כמה אתם/ן?</label>
+  <div class="qb"><div class="qnum">00</div><label class="qlabel">מגדר</label>
+    <div class="opts" id="gender-opts">
+      <label class="oitem"><input type="radio" name="gender" value="זכר"><span>זכר</span></label>
+      <label class="oitem"><input type="radio" name="gender" value="נקבה"><span>נקבה</span></label>
+      <label class="oitem"><input type="radio" name="gender" value="אחר"><span>אחר</span></label>
+    </div></div>
+
+  <div class="qb"><div class="qnum">01</div><label class="qlabel" for="q1" id="q1-label">בני כמה אתם/ן?</label>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
       <select id="q1" name="q1" style="background:#080808;border:.5px solid #252525;border-radius:10px;color:#c084fc;font-family:'Rubik',sans-serif;font-size:15px;padding:.65rem .9rem;outline:none;flex:1;min-width:140px;-webkit-appearance:none;appearance:none;cursor:pointer">
         <option value="" disabled selected>בחר גיל...</option>
@@ -282,6 +289,15 @@ document.addEventListener('DOMContentLoaded',function(){
   var VIDEO_IDS=['eKU6Gl6cBz4','GIQ0PdCOkLw','bMPTyNW3qkA','G2-wOi_H9S4','HZV3uF-ABjw','mAI0JDnK07A','9WTtAv-4KWQ','5tg0X8k7tv0','M_NIU-Sq3O0','925acSqDtoA','0H8feqG2zOk','eUkr-aHTqAM','kdUulxOdO3M','GhrxOTGzRow','qEh3osh9Bbk'];
   var SHEET_URL='https://api.sheety.co/7a2026bef2613e6ceff7b70fe9ded215/%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA%20%D7%A1%D7%A7%D7%A8%20%D7%90%D7%99%D7%9E%D7%94/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%9F1';
 
+  // Gender-based wording
+  document.querySelectorAll('input[name="gender"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var fem = r.value === 'נקבה';
+      var q1l = document.getElementById('q1-label');
+      if(q1l) q1l.textContent = fem ? 'בת כמה את?' : r.value==='זכר' ? 'בן כמה אתה?' : 'בני כמה אתם/ן?';
+    });
+  });
+
   document.addEventListener('click',function(e){
     var vs=e.target.closest('.vsopt');
     if(!vs||!vs.dataset.inp)return;
@@ -311,28 +327,30 @@ document.addEventListener('DOMContentLoaded',function(){
   };
 
   function generateAnalysis(data){
+    var g = data.gender || '';
+    var fem = (g === 'נקבה');
+    var T = fem ? 'את' : 'אתה';
+    var Tmit = fem ? 'מאזינה' : 'מאזין';
+    var Tmexx = fem ? 'מחפשת' : 'מחפש';
+    var Tptuxa = fem ? 'פתוחה' : 'פתוח';
+    var Tmeuzemet = fem ? 'מאוזנת' : 'מאוזן';
+    var shel = fem ? 'שלך' : 'שלך';
     var parts = [];
 
-    // Nostalgia vs innovation
-    var nostalgic = parseInt(data.q7)||0;
-    if(nostalgic >= 4) parts.push('אתה מאזין נוסטלגי שמחפש את תחושת הקלאסי — סיפורים שמזכירים לך את ימי ה-Creepypasta הגדולים.');
-    else if(nostalgic <= 2) parts.push('אתה פתוח לחידושים ומחפש קריפיפסטה שבוטשת גבולות — לא רק מה שהיה.');
-    else parts.push('אתה מאזין מאוזן — נהנה מהנוסטלגיה אבל פתוח לרעיונות חדשים.');
+    var nostalgic = parseInt(data.nostalgic)||parseInt(data.q7)||0;
+    if(nostalgic >= 4) parts.push(T+' '+Tmit+' נוסטלגי'+( fem?'ת':'')+' ש'+Tmexx+' את תחושת הקלאסיקה — סיפורים שמזכירים לך את ימי הקריפיפסטה הגדולים.');
+    else if(nostalgic <= 2) parts.push('מקומה של הנוסטלגיה בכבודה אבל '+T+' צמא'+(fem?'ה':'')+' לקריפיפסטות בעולמות חדשים ומסקרנים.');
+    else parts.push(T+' '+Tmit+' מאוזן'+(fem?'ת':'')+' — נהנה'+(fem?'ת':'')+' מהנוסטלגיה אבל '+Tptuxa+' לרעיונות חדשים.');
 
-    // What matters in a story
-    var important = data.q11 || '';
-    if(important.includes('קריינות')) parts.push('הקול והביצוע הם הכל עבורך — קריינות טובה יכולה להציל סיפור בינוני.');
-    if(important.includes('דמות')) parts.push('אתה מאזין שמחפש דמויות שאפשר להיקשר אליהן — בלי זה הפחד לא עובד.');
-    if(important.includes('לא יודע מה יקרה')) parts.push('המתח הוא המנוע שלך — אתה אוהב כשהסיפור מפתיע אותך עד הסוף.');
+    var important = data.important || data.q11 || '';
+    if(important.includes('קריינות')) parts.push('עולם הסאונד הוא הכל עבורך — קריינות טובה ואטמוספרה מתאימה יכולה להציל סיפור בינוני.');
+    if(important.includes('דמות')) parts.push(T+' '+Tmexx+' את העומק בדמויות, להיקשר אליהן, לחוות איתן — ולא רק לפחד מהאיום.');
+    if(important.includes('לא יודע מה יקרה')||important.includes('סיום מפתיע')) parts.push(T+(fem?' אוכלת':' אוכל')+' מתח לארוחת בוקר, וכשסיפור מציג לך בסוף משהו שלא ציפית אליו — '+T+' בעננים.');
 
-    // VS answers
-    if(data.vs1 === 'להיות לבד') parts.push('הפחד האמיתי שלך הוא בידוד — לא הדבר המפחיד, אלא העובדה שאתה לבד איתו.');
-    else if(data.vs1) parts.push('אתה מפחד יותר מהלא-ידוע האנושי — מה שאנשים זרים עלולים להיות.');
+    if(data.vs3 === 'לא לדעת מה קורה') parts.push('אי-הוודאות מפחיד'+(fem?'ה':'')+' אותך יותר מהאיום עצמו.');
+    else if(data.vs3 === 'לדעת בדיוק מה הולך לקרות') parts.push('הידיעה מבעית'+(fem?'ה':'')+' אותך — לדעת מה הולך לקרות ולא '+(fem?'יכולה':'יכול')+' לעצור זה גרוע מהכל.');
 
-    if(data.vs3 === 'לא לדעת מה קורה') parts.push('אי-הוודאות מפחידה אותך יותר מהאיום עצמו.');
-    else if(data.vs3) parts.push('הידיעה מבעיתה אותך — לדעת מה הולך לקרות ולא יכול לעצור זה גרוע מהכל.');
-
-    if(data.vs4 === 'איום שמרגיש אבל לא נראה') parts.push('אתה מגיב לאיום הבלתי-נראה — מה שהדמיון שלך בונה תמיד גרוע יותר מכל מה שיראו לך.');
+    if(data.vs4 === 'איום שמרגיש אבל לא נראה') parts.push(T+' '+(fem?'מפחדת':'מפחד')+' מהבלתי-נראה — מה שהדמיון שלך בונה תמיד גרוע יותר מכל מה שבאמת נמצא שם.');
 
     if(parts.length === 0) return null;
     return parts.join(' ');
@@ -349,6 +367,7 @@ document.addEventListener('DOMContentLoaded',function(){
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({"\u05D2\u05D9\u05DC\u05D9\u05D5\u05DF1":{
+          gender:data.gender||'',
           timestamp:data.timestamp||'',
           gil:data.q1||'',
           youtube:data.q2||'',
