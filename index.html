@@ -10,7 +10,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--blk);color:var(--tx);font-family:'Rubik',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;font-size:17px}
 .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 100%,rgba(139,0,0,.09) 0%,transparent 60%),radial-gradient(ellipse at 15% 60%,rgba(45,0,64,.14) 0%,transparent 50%),radial-gradient(ellipse at 85% 30%,rgba(45,0,64,.1) 0%,transparent 40%)}
-.trees{position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:0;pointer-events:none;opacity:.6;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23111'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%230a0a0a'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23111'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%230a0a0a'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23111'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%230a0a0a'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23111'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%230a0a0a'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23111'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%230a0a0a'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23111'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%230a0a0a'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23111'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%230a0a0a'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23111'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%230a0a0a'/%3E%3C/svg%3E") bottom/cover no-repeat}
+.trees{position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:0;pointer-events:none;opacity:.85;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 280'%3E%3Cpolygon points='0,280 35,110 70,280' fill='%23111'/%3E%3Cpolygon points='50,280 95,65 140,280' fill='%230a0a0a'/%3E%3Cpolygon points='110,280 160,90 210,280' fill='%23111'/%3E%3Cpolygon points='180,280 235,55 290,280' fill='%230a0a0a'/%3E%3Cpolygon points='260,280 320,80 380,280' fill='%23111'/%3E%3Cpolygon points='350,280 410,40 470,280' fill='%230a0a0a'/%3E%3Cpolygon points='440,280 500,100 560,280' fill='%23111'/%3E%3Cpolygon points='530,280 595,60 660,280' fill='%230a0a0a'/%3E%3Cpolygon points='630,280 695,45 760,280' fill='%23111'/%3E%3Cpolygon points='730,280 795,75 860,280' fill='%230a0a0a'/%3E%3Cpolygon points='830,280 895,55 960,280' fill='%23111'/%3E%3Cpolygon points='930,280 995,85 1060,280' fill='%230a0a0a'/%3E%3Cpolygon points='1030,280 1095,48 1160,280' fill='%23111'/%3E%3Cpolygon points='1120,280 1185,70 1250,280' fill='%230a0a0a'/%3E%3Cpolygon points='1210,280 1270,42 1330,280' fill='%23111'/%3E%3Cpolygon points='1300,280 1350,68 1400,280' fill='%230a0a0a'/%3E%3C/svg%3E") bottom/cover no-repeat}
 .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 1.25rem 6rem}
 
 .hero{text-align:center;padding:4rem 1rem 3rem;position:relative}
@@ -66,10 +66,12 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 .imgset{margin-bottom:1.25rem}
 .isetlbl{font-size:10px;color:var(--txd);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
 .igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.icard{aspect-ratio:4/3;border-radius:4px;border:1.5px solid #2a2a2a;background:var(--blk3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .2s;padding:0;-webkit-appearance:none;appearance:none;font-family:inherit;outline:none;user-select:none}
+.icard{aspect-ratio:4/3;border-radius:4px;border:1.5px solid #2a2a2a;background:var(--blk3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:border-color .15s,background .15s;padding:0;-webkit-appearance:none;appearance:none;font-family:inherit;outline:none;user-select:none}
 .icard:hover{border-color:var(--red-b);background:#0d0000}
-.icard.on{border:1.5px solid var(--red-b)!important;background:#120000!important;opacity:1!important;cursor:default}
+.icard.on{border:2px solid var(--red-b);background:#1a0000;cursor:default}
+.icard.on:hover{border:2px solid var(--red-b);background:#1a0000}
 .icard.dim{opacity:.2;cursor:not-allowed}
+.icard.dim:hover{border-color:#2a2a2a;background:var(--blk3)}
 .iemoji{font-size:32px;line-height:1;pointer-events:none}
 .icap{font-size:11px;color:var(--txm);text-align:center;padding:0 6px;line-height:1.3;pointer-events:none}
 
@@ -367,26 +369,35 @@ input::placeholder,textarea::placeholder{color:#7c3aed}
 
   // IMAGE CARDS
   function handleCardClick(card){
-    if(card.classList.contains('dim'))return;
     var setId=card.dataset.set,val=card.dataset.val,rev=card.dataset.rev;
     if(!setId||!val)return;
+    // Check if already selected
+    if(card.classList.contains('on'))return;
     var key=setId.replace('set','s');
     answers[key]=val;
     document.getElementById('q_'+setId).value=val;
-    document.getElementById(setId).querySelectorAll('.icard').forEach(function(c){
-      c.classList.add('dim');c.classList.remove('on');
+    // Update all cards in set
+    var allCards=document.getElementById(setId).querySelectorAll('.icard');
+    allCards.forEach(function(c){
+      c.classList.remove('on');
+      c.classList.add('dim');
     });
-    card.classList.remove('dim');card.classList.add('on');
+    card.classList.remove('dim');
+    card.classList.add('on');
+    // Show reveal
     var n=setId.slice(-1);
     document.getElementById('r'+n+'t').textContent=rev;
     document.getElementById('r'+n).classList.add('show');
     if(answers.s1&&answers.s2&&answers.s3)calcProf();
   }
 
-  // Use both click and touchend for maximum compatibility
+  // Attach to all cards immediately
   document.querySelectorAll('.icard').forEach(function(card){
-    card.addEventListener('click',function(e){e.preventDefault();handleCardClick(card);});
-    card.addEventListener('touchend',function(e){e.preventDefault();handleCardClick(card);});
+    card.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      handleCardClick(card);
+    });
   });
 
   // VS BUTTONS
