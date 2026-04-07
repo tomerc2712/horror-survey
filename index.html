@@ -82,7 +82,7 @@ input::placeholder,textarea::placeholder{color:#4a1a7a;opacity:1}
 .lottery-btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2.25rem;background:var(--red);color:#fff;border:none;border-radius:12px;font-family:'Assistant',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s,transform .1s;margin-bottom:.75rem}
 .lottery-btn:hover{background:#a00000;transform:scale(1.03)}
 .lottery-btn:active{transform:scale(.98)}
-.lottery-note{font-size:11px;color:var(--txd);font-family:'Assistant',sans-serif}
+.lottery-note{font-size:11px;color:#a855f7;font-family:'Assistant',sans-serif}
 .video-wrap{display:none;margin-top:2rem;border-radius:8px;overflow:hidden;aspect-ratio:16/9;background:#000}
 .video-wrap.show{display:block}
 .video-wrap iframe{width:100%;height:100%;border:none}
@@ -263,7 +263,7 @@ input::placeholder,textarea::placeholder{color:#4a1a7a;opacity:1}
   <button class="lottery-btn" id="lottery-btn" onclick="drawVideo()">
     <span>🎲</span> להגרלת קריפיפסטה
   </button>
-  <div class="lottery-note" id="lottery-note">הקריפיפסטה שתצא - אומרת על הטעם שלכם הרבה 😉</div>
+  <div class="lottery-note" id="lottery-note">הגרלה אחת. מה שיצא — גורל.</div>
   <div class="video-wrap" id="video-wrap">
     <div id="yt-player"></div>
   </div>
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded',function(){
       parts.push(T+' '+(fem?'שומרת':'שומר')+' על הגחלת — '+(fem?'מאזינה':'מאזין')+' שהלב שלו עדיין פועם לקצב הקלאסי.');
       parts.push(T+' '+(fem?'מאזינה':'מאזין')+' נוסטלגי'+(fem?'ת':'')+' ש'+(fem?'מחפשת':'מחפש')+' את תחושת הקלאסיקה — סיפורים שמזכירים לך את ימי הקריפיפסטה הגדולים.');
     } else if(nostalgic <= 2){
-      title = (fem?'🔪 מאזינה':'🔪 מאזין')+(fem?' פורצת':' פורץ')+' גבולות';
+      title = (fem?'🔪 מאזינה':'🔪 מאזין')+' פורצ'+(fem?'ת':'')+' גבולות';
       parts.push(T+' '+(fem?'לא מרוצה':'לא מרוצה')+' ממה שהיה — '+(fem?'מאזינה':'מאזין')+' שתמיד '+(fem?'מחפשת':'מחפש')+' את מה שעוד לא היה.');
       parts.push('מקומה של הנוסטלגיה בכבודה אבל '+T+' צמא'+(fem?'ה':'')+' לקריפיפסטות בעולמות חדשים ומסקרנים.');
     } else {
