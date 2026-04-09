@@ -361,33 +361,51 @@ document.addEventListener('DOMContentLoaded',function(){
       e.stopPropagation();
       var data={timestamp:new Date().toISOString()};
       new FormData(form).forEach(function(v,k){data[k]=data[k]?data[k]+'|'+v:v});
-      fetch(SHEET_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({"\u05D2\u05D9\u05DC\u05D9\u05D5\u05DF1":{
-          gender:data.gender||'',
-          timestamp:data.timestamp||'',
-          gil:data.q1||'',
-          youtube:data.q2||'',
-          spacycrap:data.q3||'',
-          feel:data.q4||'',
-          israeli:data.q5||'',
-          nostalgic:data.q7||'',
-          character:data.q8||'',
-          expected:data.q9||'',
-          title:data.q10||'',
-          important:data.q11||'',
-          favorite:data.q13||'',
-          honest:data.q15||'',
-          cheap:data.q16||'',
-          sentence:data.q17||'',
-          vs1:data.vs1||'',
-          vs2:data.vs2||'',
-          vs3:data.vs3||'',
-          vs4:data.vs4||'',
-          firsttime:data.q22||''
-        }
-      }).catch(function(){});
+
+      // Send to Google Forms
+      var payload={
+        gender:data.gender||'',
+        timestamp:data.timestamp||'',
+        gil:data.q1||'',
+        youtube:data.q2||'',
+        spacycrap:data.q3||'',
+        feel:data.q4||'',
+        israeli:data.q5||'',
+        nostalgic:data.q7||'',
+        character:data.q8||'',
+        expected:data.q9||'',
+        title:data.q10||'',
+        important:data.q11||'',
+        favorite:data.q13||'',
+        honest:data.q15||'',
+        cheap:data.q16||'',
+        sentence:data.q17||'',
+        vs1:data.vs1||'',
+        vs2:data.vs2||'',
+        vs3:data.vs3||'',
+        vs4:data.vs4||'',
+        firsttime:data.q22||''
+      };
+      var formUrl='https://docs.google.com/forms/d/e/'+FORM_ID+'/formResponse';
+      var body=ENTRY+'='+encodeURIComponent(JSON.stringify(payload))+'&submit=Submit';
+      fetch(formUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).catch(function(){});
+
+      // Show done screen
+      var analysis=generateAnalysis(data);
+      var box=document.getElementById('analysis-box');
+      var txt=document.getElementById('analysis-text');
+      if(box&&txt&&analysis){
+        var lines=analysis.split('\n\n');
+        if(lines.length>1){txt.innerHTML='<strong style="font-size:18px;color:#c084fc;display:block;margin-bottom:.75rem">'+lines[0]+'</strong>'+lines[1];}
+        else{txt.textContent=analysis;}
+        box.style.display='block';
+      }
+      form.style.display='none';
+      document.getElementById('done').classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+      return false;
+    });
+  }
       form.style.display='none';
       // Generate analysis
       var analysis = generateAnalysis(data);
