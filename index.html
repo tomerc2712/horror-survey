@@ -393,11 +393,11 @@ document.addEventListener('DOMContentLoaded',function(){
       // Show done screen
       var analysis=generateAnalysis(data);
       var box=document.getElementById('analysis-box');
+      var ttl=document.getElementById('analysis-title');
       var txt=document.getElementById('analysis-text');
-      if(box&&txt&&analysis){
-        var lines=analysis.split('\n\n');
-        if(lines.length>1){txt.innerHTML='<strong style="font-size:18px;color:#c084fc;display:block;margin-bottom:.75rem">'+lines[0]+'</strong>'+lines[1];}
-        else{txt.textContent=analysis;}
+      if(box&&analysis){
+        if(ttl) ttl.textContent=(data.gender==='נקבה'?'הפרופיל שלך כמאזינה':'הפרופיל שלך כמאזינ');
+        if(txt) txt.innerHTML='<strong style="font-size:18px;color:#c084fc;display:block;margin-bottom:.75rem">'+analysis.title+'</strong>'+analysis.text;
         box.style.display='block';
       }
       form.style.display='none';
