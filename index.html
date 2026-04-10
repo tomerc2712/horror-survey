@@ -273,8 +273,7 @@ input::placeholder,textarea::placeholder{color:#4a1a7a;opacity:1}
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var VIDEO_IDS=['eKU6Gl6cBz4','GIQ0PdCOkLw','bMPTyNW3qkA','G2-wOi_H9S4','HZV3uF-ABjw','mAI0JDnK07A','9WTtAv-4KWQ','5tg0X8k7tv0','M_NIU-Sq3O0','925acSqDtoA','0H8feqG2zOk','eUkr-aHTqAM','kdUulxOdO3M','GhrxOTGzRow','qEh3osh9Bbk'];
-  var FORM_ID='1FAIpQLSdwtotBeyGZuUBt2b2FUlCKdmtLzN12dm5VIhNaFUs_80F2wA';
-  var ENTRY='entry.276996492';
+  var SHEET_URL='https://api.sheety.co/7a2026bef2613e6ceff7b70fe9ded215/%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA%20%D7%A1%D7%A7%D7%A8%20%D7%90%D7%99%D7%9E%D7%94/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%9F1';
 
   // Gender-based wording
   document.querySelectorAll('input[name="gender"]').forEach(function(r){
@@ -361,32 +360,7 @@ document.addEventListener('DOMContentLoaded',function(){
       e.stopPropagation();
       var data={timestamp:new Date().toISOString()};
       new FormData(form).forEach(function(v,k){data[k]=data[k]?data[k]+'|'+v:v});
-      fetch(SHEET_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({"\u05D2\u05D9\u05DC\u05D9\u05D5\u05DF1":{
-          gender:data.gender||'',
-          timestamp:data.timestamp||'',
-          gil:data.q1||'',
-          youtube:data.q2||'',
-          spacycrap:data.q3||'',
-          feel:data.q4||'',
-          israeli:data.q5||'',
-          nostalgic:data.q7||'',
-          character:data.q8||'',
-          expected:data.q9||'',
-          title:data.q10||'',
-          important:data.q11||'',
-          favorite:data.q13||'',
-          honest:data.q15||'',
-          cheap:data.q16||'',
-          sentence:data.q17||'',
-          vs1:data.vs1||'',
-          vs2:data.vs2||'',
-          vs3:data.vs3||'',
-          vs4:data.vs4||'',
-          firsttime:'UNUSED'
-        }};
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSdwtotBeyGZuUBt2b2FUlCKdmtLzN12dm5VIhNaFUs_80F2wA/formResponse',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'entry.276996492='+encodeURIComponent(JSON.stringify({gender:data.gender||'',timestamp:data.timestamp||'',gil:data.q1||'',youtube:data.q2||'',spacycrap:data.q3||'',feel:data.q4||'',israeli:data.q5||'',nostalgic:data.q7||'',character:data.q8||'',expected:data.q9||'',title:data.q10||'',important:data.q11||'',favorite:data.q13||'',honest:data.q15||'',cheap:data.q16||'',sentence:data.q17||'',vs1:data.vs1||'',vs2:data.vs2||'',vs3:data.vs3||'',vs4:data.vs4||'',firsttime:data.q22||''}))+'&submit=Submit'}).catch(function(){});
       form.style.display='none';
       // Generate analysis
       var analysis = generateAnalysis(data);
