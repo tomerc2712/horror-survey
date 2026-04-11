@@ -416,7 +416,9 @@ async function init() {
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
-    document.getElementById('last-updated').textContent = `${n} ממלאים · עודכן ${new Date().toLocaleDateString('he-IL')}`;
+    var now = new Date();
+    var timeStr = now.toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'});
+    document.getElementById('last-updated').textContent = n+' ממלאים · עודכן '+now.toLocaleDateString('he-IL')+' בשעה '+timeStr;
     document.getElementById('stat-total').textContent = n;
 
     const ages = allParsed.map(d => parseInt(d.gil)).filter(a => !isNaN(a) && a > 4 && a < 100);
