@@ -311,7 +311,7 @@ function parseFormRow(row) {
   var raw = row['data'] || row['Data'] || '';
   if (!raw) return null;
   try { return typeof raw === 'object' ? raw : JSON.parse(raw); } catch(e) {
-    var match = String(raw).match(/\{[\s\S]*\}/);
+    var match = String(raw).match(/[{][\s\S]*[}]/);
     if (match) { try { return JSON.parse(match[0]); } catch(e2) {} }
     return null;
   }
@@ -338,7 +338,7 @@ function parseSheetRow(row) {
 async function fetchSheet(sheetName) {
   var res = await fetch(API + encodeURIComponent(sheetName));
   var text = await res.text();
-  var json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+  var start = text.indexOf('(') + 1; var end = text.lastIndexOf(')'); var json = JSON.parse(text.substring(start, end));
   var cols = json.table.cols.map(function(c){ return c.label; });
   return json.table.rows.map(function(r){
     var obj = {};
