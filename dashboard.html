@@ -460,7 +460,7 @@ async function init() {
     `).join('');
 
     // LISTENER TYPES
-    let nostH=0, nostL=0, nostM=0;
+    nostH=0; nostL=0; nostM=0;
     nosts.forEach(v => { if(v>=4) nostH++; else if(v<=2) nostL++; else nostM++; });
     document.getElementById('listener-types').innerHTML = [
       {emoji:'🕯️', name:'מאזין של הימים הטובים', count:nostH},
@@ -578,8 +578,8 @@ async function init() {
       var topImp = Object.entries(impCounts).sort(function(a,b){return b[1]-a[1];})[0] || ['?',0];
 
       var nostAvg = nosts.length ? (nosts.reduce(function(s,a){return s+a;},0)/nosts.length).toFixed(1) : '?';
-      var nostH = nosts.filter(function(v){return v>=4;}).length;
-      var nostL = nosts.filter(function(v){return v<=2;}).length;
+      nostH = nosts.filter(function(v){return v>=4;}).length;
+      nostL = nosts.filter(function(v){return v<=2;}).length;
 
       var youngest = ages.length ? Math.min.apply(null,ages) : '?';
       var oldest = ages.length ? Math.max.apply(null,ages) : '?';
