@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דשבורד סקר האימה — תומר כרמלי</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik+Mono+One&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #8B0000;
+  --red-b: #c0392b;
+  --pur: #6b21a8;
+  --pur-l: #a855f7;
+  --pur-ll: #c084fc;
+  --blk: #050505;
+  --blk2: #0d0d0d;
+  --blk3: #141414;
+  --tx: #d4d4d4;
+  --txm: #888;
+  --border: rgba(255,255,255,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--blk);
+  color: var(--tx);
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(139,0,0,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(107,33,168,.15) 0%, transparent 60%);
+}
+.wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+
+/* HEADER */
+.header { text-align: center; padding: 3rem 1rem 2.5rem; }
+.header-eyebrow { font-family: 'Rubik Mono One', monospace; font-size: 10px; color: var(--red-b); letter-spacing: .3em; text-transform: uppercase; margin-bottom: 1rem; }
+.header-title { font-family: 'Assistant', sans-serif; font-size: clamp(28px, 5vw, 52px); font-weight: 800; color: #fff; margin-bottom: .5rem; }
+.header-title span { color: var(--red-b); }
+.header-sub { font-size: 14px; color: var(--txm); }
+.header-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
+.hstat { text-align: center; }
+.hstat-num { font-family: 'Rubik Mono One', monospace; font-size: 36px; color: #fff; display: block; }
+.hstat-lbl { font-size: 11px; color: var(--txm); letter-spacing: .1em; text-transform: uppercase; margin-top: .2rem; }
+
+/* LOADING */
+#loading { text-align: center; padding: 5rem; }
+.spinner { width: 40px; height: 40px; border: 2px solid #222; border-top-color: var(--red-b); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* GRID */
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.card { background: var(--blk2); border: .5px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+.card-title { font-size: 10px; color: var(--txm); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1.25rem; font-family: 'Rubik Mono One', monospace; }
+.card.col-4 { grid-column: span 4; }
+.card.col-6 { grid-column: span 6; }
+.card.col-8 { grid-column: span 8; }
+.card.col-12 { grid-column: span 12; }
+@media (max-width: 900px) {
+  .card.col-4, .card.col-6, .card.col-8 { grid-column: span 12; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .card.col-4 { grid-column: span 6; }
+}
+
+/* BAR CHART */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 12px; color: var(--tx); min-width: 140px; text-align: right; }
+.bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+.bar-fill.red { background: linear-gradient(90deg, var(--red), var(--red-b)); }
+.bar-fill.pur { background: linear-gradient(90deg, var(--pur), var(--pur-l)); }
+.bar-fill.mixed { background: linear-gradient(90deg, var(--red), var(--pur-l)); }
+.bar-count { font-size: 11px; color: var(--txm); min-width: 28px; font-family: 'Rubik Mono One', monospace; }
+
+/* PIE CHART LEGEND */
+.pie-wrap { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.pie-svg { flex-shrink: 0; }
+.pie-legend { display: flex; flex-direction: column; gap: 8px; }
+.pie-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.pie-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* LISTENER TYPES */
+.types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 600px) { .types-grid { grid-template-columns: 1fr; } }
+.type-card { background: #0a0a0a; border: .5px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+.type-emoji { font-size: 28px; display: block; margin-bottom: .5rem; }
+.type-name { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: .25rem; }
+.type-count { font-family: 'Rubik Mono One', monospace; font-size: 28px; color: var(--pur-l); }
+.type-pct { font-size: 11px; color: var(--txm); }
+
+/* VS CARDS */
+.vs-pair { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; margin-bottom: 14px; }
+.vs-opt { background: #0a0a0a; border-radius: 8px; padding: .6rem .8rem; font-size: 12px; color: var(--txm); }
+.vs-opt.winner { background: #0d0000; border: .5px solid var(--red-b); color: #e0e0e0; }
+.vs-mid { font-size: 9px; color: var(--red); font-family: 'Rubik Mono One', monospace; text-align: center; }
+.vs-pct { font-size: 10px; color: var(--pur-l); margin-top: 2px; }
+
+/* AGE CHART */
+.age-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+.age-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+.age-bar { width: 100%; background: linear-gradient(to top, var(--red), var(--red-b)); border-radius: 3px 3px 0 0; transition: height 1s ease; min-height: 2px; }
+.age-lbl { font-size: 9px; color: var(--txm); white-space: nowrap; }
+.age-num { font-size: 9px; color: var(--pur-l); font-family: 'Rubik Mono One', monospace; }
+
+/* RESPONSES TABLE */
+.resp-filters { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+.resp-filter { padding: .3rem .8rem; border-radius: 20px; border: .5px solid var(--border); background: transparent; color: var(--txm); font-size: 11px; cursor: pointer; transition: all .15s; font-family: 'Rubik', sans-serif; }
+.resp-filter.active, .resp-filter:hover { background: var(--pur); border-color: var(--pur-l); color: #fff; }
+.resp-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
+.resp-list::-webkit-scrollbar { width: 3px; }
+.resp-list::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+.resp-item { background: #0a0a0a; border: .5px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; }
+.resp-meta { display: flex; gap: 8px; margin-bottom: .5rem; flex-wrap: wrap; }
+.resp-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: #1a0030; color: var(--pur-l); border: .5px solid #3a0060; }
+.resp-tag.red { background: #1a0000; color: var(--red-b); border-color: #3a0000; }
+.resp-text { font-size: 13px; color: var(--tx); line-height: 1.6; }
+.resp-q { font-size: 10px; color: var(--txm); margin-bottom: .25rem; }
+
+/* WORD CLOUD style */
+.words { display: flex; flex-wrap: wrap; gap: 8px; }
+.word { padding: .3rem .75rem; border-radius: 20px; font-size: 12px; background: #0d0000; border: .5px solid #2a0808; color: var(--tx); }
+.word.big { font-size: 15px; background: #1a0030; border-color: #4a0090; color: var(--pur-ll); font-weight: 500; }
+.word.huge { font-size: 18px; background: #0d0000; border-color: var(--red-b); color: #fff; font-weight: 600; }
+
+/* DIVIDER */
+.section-label { font-family: 'Rubik Mono One', monospace; font-size: 10px; color: var(--red-b); letter-spacing: .3em; text-transform: uppercase; margin: 2.5rem 0 1rem; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ''; flex: 1; height: .5px; background: linear-gradient(90deg, var(--red-b), transparent); }
+
+.no-data { font-size: 13px; color: var(--txm); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+
+<div class="header">
+  <div class="header-eyebrow">מועדון האימה · ניתוח נתונים</div>
+  <h1 class="header-title">סקר הקריפיפסטות<br>של <span>תומר כרמלי</span></h1>
+  <div class="header-sub" id="last-updated">טוען נתונים...</div>
+  <div class="header-stats">
+    <div class="hstat"><span class="hstat-num" id="stat-total">—</span><div class="hstat-lbl">ממלאים</div></div>
+    <div class="hstat"><span class="hstat-num" id="stat-avg-age">—</span><div class="hstat-lbl">גיל ממוצע</div></div>
+    <div class="hstat"><span class="hstat-num" id="stat-nostalgia">—</span><div class="hstat-lbl">ציון נוסטלגיה ממוצע</div></div>
+  </div>
+</div>
+
+<div id="loading"><div class="spinner"></div><div style="color:var(--txm);font-size:13px">טוען נתונים מהשיטס...</div></div>
+<div id="dashboard" style="display:none">
+
+  <div class="section-label">דמוגרפיה</div>
+  <div class="grid">
+    <!-- Gender -->
+    <div class="card col-4">
+      <div class="card-title">פילוג מגדר</div>
+      <div class="pie-wrap">
+        <svg class="pie-svg" id="gender-pie" width="80" height="80" viewBox="0 0 80 80"></svg>
+        <div class="pie-legend" id="gender-legend"></div>
+      </div>
+    </div>
+    <!-- Age -->
+    <div class="card col-8">
+      <div class="card-title">פילוג גילאים</div>
+      <div class="age-bars" id="age-bars"></div>
+    </div>
+  </div>
+
+  <div class="section-label">פרופיל מאזין</div>
+  <div class="grid">
+    <!-- Listener types -->
+    <div class="card col-6">
+      <div class="card-title">טיפוסי מאזין</div>
+      <div class="types-grid" id="listener-types"></div>
+    </div>
+    <!-- Nostalgia scale -->
+    <div class="card col-6">
+      <div class="card-title">סקאלת נוסטלגיה (1=חדשנות · 5=קלאסי)</div>
+      <div id="nostalgia-bars"></div>
+    </div>
+  </div>
+
+  <div class="section-label">העדפות תוכן</div>
+  <div class="grid">
+    <!-- What matters -->
+    <div class="card col-6">
+      <div class="card-title">מה הכי חשוב בסיפור טוב</div>
+      <div id="important-bars"></div>
+    </div>
+    <!-- Title preference -->
+    <div class="card col-6">
+      <div class="card-title">כותרת מועדפת</div>
+      <div id="title-bars"></div>
+    </div>
+    <!-- VS results -->
+    <div class="card col-12">
+      <div class="card-title">שאלות VS — מה מפחיד יותר?</div>
+      <div id="vs-results" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem"></div>
+    </div>
+  </div>
+
+  <div class="section-label">תשובות חופשיות</div>
+  <div class="grid">
+    <div class="card col-12">
+      <div class="card-title">קרא תשובות</div>
+      <div class="resp-filters" id="resp-filters"></div>
+      <div class="resp-list" id="resp-list"></div>
+    </div>
+  </div>
+
+</div><!-- /dashboard -->
+</div><!-- /wrap -->
+
+<script>
+const SHEET_ID = '11ouwVZopxBzDs33AakcplRwDpBYsZ_Y93017q28RYc8';
+const API = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
+
+async function fetchSheet(sheetName) {
+  const url = API + encodeURIComponent(sheetName);
+  const res = await fetch(url);
+  const text = await res.text();
+  const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+  const cols = json.table.cols.map(c => c.label);
+  const rows = json.table.rows.map(r => {
+    const obj = {};
+    r.c.forEach((cell, i) => { obj[cols[i]] = cell ? cell.v : ''; });
+    return obj;
+  });
+  return { cols, rows };
+}
+
+function parseRow(row) {
+  // Try to parse the "data" JSON column
+  const raw = row['data'] || row['Data'] || '';
+  if (!raw) return null;
+  try {
+    return typeof raw === 'object' ? raw : JSON.parse(raw);
+  } catch(e) {
+    // Try to extract JSON from the string
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (match) {
+      try { return JSON.parse(match[0]); } catch(e2) {}
+    }
+    return null;
+  }
+}
+
+function pct(n, total) { return total ? Math.round(n / total * 100) : 0; }
+
+function renderPie(svgId, data, colors) {
+  const svg = document.getElementById(svgId);
+  const total = data.reduce((s, d) => s + d.value, 0);
+  let angle = 0;
+  const cx = 40, cy = 40, r = 35;
+  data.forEach((d, i) => {
+    const slice = (d.value / total) * 2 * Math.PI;
+    const x1 = cx + r * Math.sin(angle);
+    const y1 = cy - r * Math.cos(angle);
+    angle += slice;
+    const x2 = cx + r * Math.sin(angle);
+    const y2 = cy - r * Math.cos(angle);
+    const large = slice > Math.PI ? 1 : 0;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z`);
+    path.setAttribute('fill', colors[i % colors.length]);
+    svg.appendChild(path);
+  });
+}
+
+function renderBars(containerId, data, colorClass, total) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const max = Math.max(...data.map(d => d.value));
+  el.innerHTML = data.map(d => `
+    <div class="bar-row">
+      <div class="bar-label">${d.label}</div>
+      <div class="bar-track"><div class="bar-fill ${colorClass}" style="width:${max ? pct(d.value, max) : 0}%"></div></div>
+      <div class="bar-count">${d.value}</div>
+    </div>
+  `).join('');
+}
+
+function renderVS(containerId, pairs) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = pairs.map(p => {
+    const total = p.a.count + p.b.count;
+    const aWins = p.a.count >= p.b.count;
+    return `
+      <div class="vs-pair">
+        <div class="vs-opt ${aWins ? 'winner' : ''}">
+          ${p.a.label}
+          <div class="vs-pct">${pct(p.a.count, total)}%</div>
+        </div>
+        <div class="vs-mid">VS</div>
+        <div class="vs-opt ${!aWins ? 'winner' : ''}">
+          ${p.b.label}
+          <div class="vs-pct">${pct(p.b.count, total)}%</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+const FREE_TEXT_FIELDS = [
+  { key: 'honest', label: 'דבר שאף אחד לא אומר' },
+  { key: 'favorite', label: 'קריפיפסטה אהובה' },
+  { key: 'expected', label: 'ציפית ליותר' },
+  { key: 'character', label: 'דמות זכורה' },
+  { key: 'sentence', label: 'השלמת משפט' },
+  { key: 'firsttime', label: 'פעם ראשונה' },
+  { key: 'spacycrap', label: 'ספייסי-קראפ' },
+];
+
+let allParsed = [];
+let activeFilter = FREE_TEXT_FIELDS[0].key;
+
+function renderResponses() {
+  const list = document.getElementById('resp-list');
+  const items = allParsed.filter(d => d[activeFilter] && d[activeFilter].trim());
+  if (!items.length) {
+    list.innerHTML = '<div class="no-data">אין תשובות לשאלה זו</div>';
+    return;
+  }
+  list.innerHTML = items.map(d => `
+    <div class="resp-item">
+      <div class="resp-meta">
+        ${d.gender ? `<span class="resp-tag">${d.gender}</span>` : ''}
+        ${d.gil ? `<span class="resp-tag red">גיל ${d.gil}</span>` : ''}
+        ${d.nostalgic ? `<span class="resp-tag">נוסטלגיה ${d.nostalgic}</span>` : ''}
+      </div>
+      <div class="resp-text">${d[activeFilter]}</div>
+    </div>
+  `).join('');
+}
+
+async function init() {
+  try {
+    // Try tab name "Form Responses 1" or "גיליון1"
+    let rows = [];
+    try {
+      const data = await fetchSheet('תגובות לטופס 1');
+      rows = data.rows;
+    } catch(e) {
+      try {
+        const data = await fetchSheet('גיליון1');
+        rows = data.rows;
+      } catch(e2) {
+        const data = await fetchSheet('Sheet1');
+        rows = data.rows;
+      }
+    }
+
+    // Parse all rows
+    allParsed = rows.map(parseRow).filter(Boolean);
+    const n = allParsed.length;
+
+    if (n === 0) {
+      document.getElementById('loading').innerHTML = '<div style="color:var(--txm)">לא נמצאו נתונים. ודא שהשיטס ציבורי.</div>';
+      return;
+    }
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('last-updated').textContent = `${n} ממלאים · עודכן ${new Date().toLocaleDateString('he-IL')}`;
+    document.getElementById('stat-total').textContent = n;
+
+    // Avg age
+    const ages = allParsed.map(d => parseInt(d.gil)).filter(a => !isNaN(a) && a > 0);
+    document.getElementById('stat-avg-age').textContent = ages.length ? Math.round(ages.reduce((s,a) => s+a, 0) / ages.length) : '—';
+
+    // Avg nostalgia
+    const nosts = allParsed.map(d => parseInt(d.nostalgic)).filter(a => !isNaN(a) && a > 0);
+    document.getElementById('stat-nostalgia').textContent = nosts.length ? (nosts.reduce((s,a) => s+a, 0) / nosts.length).toFixed(1) : '—';
+
+    // GENDER PIE
+    const genderMap = {};
+    allParsed.forEach(d => { const g = d.gender || 'לא ציין'; genderMap[g] = (genderMap[g]||0)+1; });
+    const gColors = ['#8B0000','#6b21a8','#444'];
+    const gData = Object.entries(genderMap).map(([k,v]) => ({label:k, value:v}));
+    renderPie('gender-pie', gData, gColors);
+    document.getElementById('gender-legend').innerHTML = gData.map((d,i) => `
+      <div class="pie-item"><div class="pie-dot" style="background:${gColors[i%gColors.length]}"></div>
+      <span>${d.label} (${pct(d.value,n)}%)</span></div>
+    `).join('');
+
+    // AGE BARS
+    const ageBuckets = {'5–14':0,'15–18':0,'19–24':0,'25–34':0,'35–44':0,'45+':0};
+    ages.forEach(a => {
+      if(a<=14) ageBuckets['5–14']++;
+      else if(a<=18) ageBuckets['15–18']++;
+      else if(a<=24) ageBuckets['19–24']++;
+      else if(a<=34) ageBuckets['25–34']++;
+      else if(a<=44) ageBuckets['35–44']++;
+      else ageBuckets['45+']++;
+    });
+    const maxAge = Math.max(...Object.values(ageBuckets));
+    document.getElementById('age-bars').innerHTML = Object.entries(ageBuckets).map(([lbl, cnt]) => `
+      <div class="age-col">
+        <div class="age-num">${cnt}</div>
+        <div class="age-bar" style="height:${maxAge ? Math.max(4, cnt/maxAge*60) : 4}px"></div>
+        <div class="age-lbl">${lbl}</div>
+      </div>
+    `).join('');
+
+    // LISTENER TYPES
+    let nostL=0, nostH=0, nostM=0;
+    nosts.forEach(v => { if(v>=4) nostH++; else if(v<=2) nostL++; else nostM++; });
+    document.getElementById('listener-types').innerHTML = [
+      {emoji:'🕯️', name:'מאזין של הימים הטובים', count:nostH},
+      {emoji:'⚖️', name:'מאזין משני העולמות', count:nostM},
+      {emoji:'🔪', name:'מאזין פורץ גבולות', count:nostL},
+    ].map(t => `
+      <div class="type-card">
+        <span class="type-emoji">${t.emoji}</span>
+        <div class="type-name">${t.name}</div>
+        <div class="type-count">${t.count}</div>
+        <div class="type-pct">${pct(t.count,nosts.length)}%</div>
+      </div>
+    `).join('');
+
+    // NOSTALGIA BARS
+    const nostBuckets = {1:0,2:0,3:0,4:0,5:0};
+    nosts.forEach(v => { if(nostBuckets[v]!==undefined) nostBuckets[v]++; });
+    renderBars('nostalgia-bars', Object.entries(nostBuckets).map(([k,v]) => ({label:`ציון ${k}`, value:v})), 'mixed', n);
+
+    // IMPORTANT
+    const impMap = {};
+    allParsed.forEach(d => {
+      (d.important||'').split('|').forEach(v => { v=v.trim(); if(v) impMap[v]=(impMap[v]||0)+1; });
+    });
+    const impData = Object.entries(impMap).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({label:k,value:v}));
+    renderBars('important-bars', impData, 'pur', n);
+
+    // TITLE
+    const titleMap = {};
+    allParsed.forEach(d => { const t=d.title||''; if(t) titleMap[t]=(titleMap[t]||0)+1; });
+    const titleLabels = {
+      'תחנת דלק': 'תחנת דלק בלילה',
+      'הרוצח': 'הרוצח של אשתי',
+      'הכפר': 'הכפר שלא במפה'
+    };
+    const titleData = Object.entries(titleMap).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({label:titleLabels[k]||k, value:v}));
+    renderBars('title-bars', titleData, 'red', n);
+
+    // VS
+    const vsData = [
+      { a: { label: 'להיות לבד', count: allParsed.filter(d=>d.vs1==='להיות לבד').length },
+        b: { label: 'להיות עם זר', count: allParsed.filter(d=>d.vs1&&d.vs1!=='להיות לבד').length } },
+      { a: { label: 'לראות משהו מפחיד', count: allParsed.filter(d=>d.vs2&&d.vs2.includes('לראות')).length },
+        b: { label: 'לשמוע משהו מפחיד', count: allParsed.filter(d=>d.vs2&&d.vs2.includes('לשמוע')).length } },
+      { a: { label: 'לא לדעת מה קורה', count: allParsed.filter(d=>d.vs3&&d.vs3.includes('לא לדעת')).length },
+        b: { label: 'לדעת מה יקרה', count: allParsed.filter(d=>d.vs3&&d.vs3.includes('לדעת בדיוק')).length } },
+      { a: { label: 'מפלצת שנראית', count: allParsed.filter(d=>d.vs4&&d.vs4.includes('נראית')).length },
+        b: { label: 'איום בלתי נראה', count: allParsed.filter(d=>d.vs4&&d.vs4.includes('מרגיש')).length } },
+    ];
+    renderVS('vs-results', vsData);
+
+    // FREE TEXT FILTERS
+    document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(f => `
+      <button class="resp-filter ${f.key===activeFilter?'active':''}" onclick="setFilter('${f.key}',this)">${f.label}</button>
+    `).join('');
+    renderResponses();
+
+  } catch(err) {
+    document.getElementById('loading').innerHTML = `<div style="color:#c0392b">שגיאה: ${err.message}<br><small>ודא שהשיטס ציבורי</small></div>`;
+    console.error(err);
+  }
+}
+
+window.setFilter = function(key, btn) {
+  activeFilter = key;
+  document.querySelectorAll('.resp-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderResponses();
+};
+
+init();
+</script>
+</body>
+</html>
