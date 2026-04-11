@@ -602,9 +602,7 @@ async function init() {
     } catch(e){ console.error('fun facts error:', e); }
 
         // FREE TEXT FILTERS
-    document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(f => `
-      <button class="resp-filter ${f.key===activeFilter?'active':''}" onclick="setFilter('${f.key}',this)">${f.label}</button>
-    `).join('');
+    document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(function(f){ return '<button class="resp-filter '+(f.key===activeFilter?'active':'')+'" onclick="setFilter(\''+f.key+'\',this)">'+f.label+'</button>'; }).join('');
     renderResponses();
 
   } catch(err) {
