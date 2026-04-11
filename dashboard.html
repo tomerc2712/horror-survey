@@ -199,6 +199,7 @@ body {
     <div class="card col-12">
       <div class="card-title">שאלות VS — מה מפחיד יותר?</div>
       <div id="vs-results" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem"></div>
+      <div id="vs-summary" style="margin-top:1.25rem;padding-top:1.25rem;border-top:.5px solid rgba(255,255,255,0.06)"></div>
     </div>
   </div>
 
@@ -504,6 +505,29 @@ async function init() {
        b:{label:'איום בלתי נראה', count:allParsed.filter(d=>String(d.vs4).includes('מרגיש')).length}},
     ];
     renderVS('vs-results', vsData);
+
+    // VS SUMMARY
+    var vs1lonelyPct = pct(allParsed.filter(function(d){return String(d.vs1).includes('לבד');}).length, allParsed.filter(function(d){return d.vs1;}).length);
+    var vs2hearPct = pct(allParsed.filter(function(d){return String(d.vs2).includes('לשמוע');}).length, allParsed.filter(function(d){return d.vs2;}).length);
+    var vs3unknownPct = pct(allParsed.filter(function(d){return String(d.vs3).includes('לא לדעת');}).length, allParsed.filter(function(d){return d.vs3;}).length);
+    var vs4invisPct = pct(allParsed.filter(function(d){return String(d.vs4).includes('מרגיש');}).length, allParsed.filter(function(d){return d.vs4;}).length);
+
+    var vsInsights = [];
+    if(vs4invisPct >= 70) vsInsights.push('הקהל שלך מגיב בעיקר ל<strong>איומים שלא רואים</strong> — מה שהדמיון בונה מפחיד יותר מכל מה שתראה במסך. זה אומר שפחות מפלצות ויותר אווירה.');
+    else if(vs4invisPct <= 35) vsInsights.push('הקהל שלך דווקא רוצה <strong>מפלצת שנראית</strong> — הם אוהבים לדעת במה הם מפחדים.');
+    else vsInsights.push('הקהל שלך מפולג בין מפלצת גלויה לאיום בלתי נראה — כדאי לשלב שניהם.');
+
+    if(vs3unknownPct >= 70) vsInsights.push('רוב הקהל מפחד מ<strong>אי-ידיעה</strong> — שמירה על המסתורין עד הסוף תמיד תנצח על הסבר מוקדם.');
+    else if(vs3unknownPct <= 35) vsInsights.push('<strong>לדעת מה הולך לקרות ולא יכול לעצור זה</strong> — הקהל שלך אוהב את תחושת הגזירה הבלתי נמנעת.');
+    else vsInsights.push('הקהל מפולג בין מתח של אי-ידיעה לבין מתח של ידיעה — שני סוגי הסיפורים יעבדו.');
+
+    if(vs2hearPct >= 60) vsInsights.push('הקהל שלך <strong>אודיוספציפי</strong> — קריינות, מוזיקה ואפקטי סאונד הם נשק מרכזי. הם מגיבים יותר לשמוע מאשר לראות.');
+    else vsInsights.push('הקהל שלך ויזואלי — תיאורים חזותיים ועריכה חשובים לו כמו, אם לא יותר, מהסאונד.');
+
+    if(vs1lonelyPct >= 60) vsInsights.push('רוב הקהל מפחד יותר מ<strong>בידוד</strong> — גיבורים לבד בסיפור מגבירים את האפקט.');
+    else vsInsights.push('הקהל מפחד יותר מ<strong>נוכחות לא מוכרת</strong> — זר שמתנהג מוזר מפחיד יותר מריקנות.');
+
+    document.getElementById('vs-summary').innerHTML = '<div style="font-size:10px;color:var(--txm);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.875rem;font-family:Heebo,sans-serif">מה זה אומר על הקהל שלך</div>'+vsInsights.map(function(t){ return '<div style="font-size:13px;color:var(--tx);line-height:1.7;margin-bottom:.6rem;padding-right:.75rem;border-right:2px solid var(--pur-l)">'+t+'</div>'; }).join('');
 
     // ISRAELI
     const israeliMap = {};
