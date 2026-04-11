@@ -360,7 +360,7 @@ const FREE_TEXT_FIELDS = [
 ];
 
 let allParsed = [];
-let activeFilter = FREE_TEXT_FIELDS[0].key;
+let activeFilter = 'character';
 
 function renderResponses() {
   const list = document.getElementById('resp-list');
@@ -384,13 +384,14 @@ async function init() {
     let parsed1 = [], parsed2 = [];
 
     try {
-      const s1 = await fetchSheet('Form_Responses');
+      const s1 = await fetchSheet('\u05EA\u05D2\u05D5\u05D1\u05D5\u05EA \u05DC\u05D8\u05D5\u05E4\u05E1 1');
       parsed1 = s1.rows.map(parseFormRow).filter(Boolean);
+      console.log('Form responses loaded:', parsed1.length);
     } catch(e) {
       try {
-        const s1b = await fetchSheet('תגובות לטופס 1');
+        const s1b = await fetchSheet('Form_Responses');
         parsed1 = s1b.rows.map(parseFormRow).filter(Boolean);
-      } catch(e2) { console.warn('Sheet1 failed:', e2); }
+      } catch(e2) { console.warn('Form sheet failed:', e2); }
     }
 
     try {
