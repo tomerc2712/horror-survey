@@ -502,9 +502,17 @@ async function init() {
     }).join('');
 
     // FREE TEXT FILTERS
-    document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(function(f){
-      return '<button class="resp-filter '+(f.key===activeFilter?'active':'')+'" onclick="setFilter(''+f.key+'',this)">'+f.label+'</button>';
+    var filtersEl = document.getElementById('resp-filters');
+    filtersEl.innerHTML = '';
+    FREE_TEXT_FIELDS.forEach(function(f){
+      var b = document.createElement('button');
+      b.className = 'resp-filter' + (f.key===activeFilter?' active':'');
+      b.textContent = f.label;
+      b.addEventListener('click', function(){ setFilter(f.key, b); });
+      filtersEl.appendChild(b);
+    });
     }).join('');
+
     renderResponses();
 
   } catch(err) {
