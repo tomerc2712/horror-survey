@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>דשבורד סקר האימה — תומר כרמלי</title>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik+Mono+One&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800&family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <style>
 :root {
   --red: #8B0000;
@@ -23,7 +23,7 @@
 body {
   background: var(--blk);
   color: var(--tx);
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-weight: 300;
   min-height: 100vh;
   overflow-x: hidden;
@@ -39,7 +39,7 @@ body {
 /* HEADER */
 .header { text-align: center; padding: 3rem 1rem 2.5rem; }
 .header-eyebrow { font-family: 'Rubik Mono One', monospace; font-size: 10px; color: var(--red-b); letter-spacing: .3em; text-transform: uppercase; margin-bottom: 1rem; }
-.header-title { font-family: 'Assistant', sans-serif; font-size: clamp(28px, 5vw, 52px); font-weight: 800; color: #fff; margin-bottom: .5rem; }
+.header-title { font-family: 'Heebo', sans-serif; font-size: clamp(28px, 5vw, 52px); font-weight: 800; color: #fff; margin-bottom: .5rem; }
 .header-title span { color: var(--red-b); }
 .header-sub { font-size: 14px; color: var(--txm); }
 .header-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
@@ -109,7 +109,7 @@ body {
 
 /* RESPONSES TABLE */
 .resp-filters { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
-.resp-filter { padding: .3rem .8rem; border-radius: 20px; border: .5px solid var(--border); background: transparent; color: var(--txm); font-size: 11px; cursor: pointer; transition: all .15s; font-family: 'Rubik', sans-serif; }
+.resp-filter { padding: .3rem .8rem; border-radius: 20px; border: .5px solid var(--border); background: transparent; color: var(--txm); font-size: 11px; cursor: pointer; transition: all .15s; font-family: 'Heebo', sans-serif; }
 .resp-filter.active, .resp-filter:hover { background: var(--pur); border-color: var(--pur-l); color: #fff; }
 .resp-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
 .resp-list::-webkit-scrollbar { width: 3px; }
@@ -247,30 +247,33 @@ function parseFormRow(row) {
 }
 
 function parseSheetRow(row) {
-  // גיליון1 format: flat columns
-  if (!row['timestamp'] && !row['gil']) return null;
+  // גיליון1 — try both English and Hebrew column names
+  const get = (...keys) => { for(const k of keys){ if(row[k]!==undefined && row[k]!==null && row[k]!=='') return String(row[k]); } return ''; };
+  const ts = get('timestamp','חותמת זמן','Timestamp');
+  const g = get('gil','גיל','age');
+  if (!ts && !g) return null;
   return {
-    timestamp: row['timestamp'] || '',
-    gender: row['gender'] || '',
-    gil: row['gil'] || '',
-    youtube: row['youtube'] || '',
-    spacycrap: row['spacycrap'] || '',
-    feel: row['feel'] || '',
-    israeli: row['israeli'] || '',
-    nostalgic: row['nostalgic'] || '',
-    character: row['character'] || '',
-    expected: row['expected'] || '',
-    title: row['title'] || '',
-    important: row['important'] || '',
-    favorite: row['favorite'] || '',
-    honest: row['honest'] || '',
-    cheap: row['cheap'] || '',
-    sentence: row['sentence'] || '',
-    vs1: row['vs1'] || '',
-    vs2: row['vs2'] || '',
-    vs3: row['vs3'] || '',
-    vs4: row['vs4'] || '',
-    firsttime: row['firsttime'] || '',
+    timestamp: ts,
+    gender: get('gender','מגדר'),
+    gil: g,
+    youtube: get('youtube','פעםאחרונהיוטיוב'),
+    spacycrap: get('spacycrap','ספייסיקראפ'),
+    feel: get('feel','רגשראשון'),
+    israeli: get('israeli','ישראלי'),
+    nostalgic: get('nostalgic','טוןנוסטלגי'),
+    character: get('character','דמותזכורה'),
+    expected: get('expected','ציפיתליותר'),
+    title: get('title','כותרתמסקרנת'),
+    important: get('important','חשובבסיפור'),
+    favorite: get('favorite','קריפיפסטהאהובה'),
+    honest: get('honest','דברשאףאחדלאאומר'),
+    cheap: get('cheap','גורםלזול'),
+    sentence: get('sentence','משפטלאשלם'),
+    vs1: get('vs1'),
+    vs2: get('vs2'),
+    vs3: get('vs3'),
+    vs4: get('vs4'),
+    firsttime: get('firsttime','פעםראשונה'),
   };
 }
 
