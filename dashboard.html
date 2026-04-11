@@ -526,22 +526,57 @@ async function init() {
     const kfar = allParsed.filter(d=>String(d.title||'').includes('הכפר')).length;
     const kfarPct = pct(kfar, allParsed.filter(d=>d.title).length);
 
-    var kfarTotal = allParsed.filter(function(d){return d.title;}).length;
-    var vs4total = allParsed.filter(function(d){return d.vs4;}).length;
-    var vs2total = allParsed.filter(function(d){return d.vs2;}).length;
-    var facts = [
-      { emoji:'🧒', text:'הגיל הצעיר ביותר: '+youngest },
-      { emoji:'🧓', text:'הגיל המבוגר ביותר: '+oldest },
-      { emoji:'🏆', text:'הכותרת המנצחת: "'+( mostCommonTitle?mostCommonTitle[0]:'?')+'" — '+( mostCommonTitle?mostCommonTitle[1]:0)+' ממלאים ('+pct( mostCommonTitle?mostCommonTitle[1]:0, kfarTotal)+'%)' },
-      { emoji:'👻', text:kfarPct+'% בחרו בכותרת "הכפר" — הכי מרתקת' },
-      { emoji:'🌑', text:nightOwls+' ממלאים שמרו על הקריפיפסטה הראשונה שלהם ללילה או לבד' },
-      { emoji:'👁️', text:pct(allParsed.filter(function(d){return String(d.vs4).includes('מרגיש');}).length, vs4total)+'% מפחדים יותר מאיום בלתי נראה מאשר ממפלצת שנראית' },
-      { emoji:'🎧', text:pct(allParsed.filter(function(d){return String(d.vs2).includes('לשמוע');}).length, vs2total)+'% מעדיפים לשמוע משהו מפחיד על פני לראות' },
-      { emoji:'🔢', text:'ממוצע ציון נוסטלגיה: '+(nosts.length?(nosts.reduce(function(s,a){return s+a;},0)/nosts.length).toFixed(1):'?')+' מתוך 5' },
-    ];
-    document.getElementById('fun-facts-grid').innerHTML = facts.map(function(f){ return '<div class="card col-6" style="display:flex;align-items:flex-start;gap:14px"><span style="font-size:28px;flex-shrink:0">'+f.emoji+'</span><div style="font-size:14px;color:var(--tx);line-height:1.6">'+f.text+'</div></div>'; }).join('');
+    // FUN FACTS
+    try {
+      var titleCounts = {};
+      allParsed.forEach(function(d){ var t=String(d.title||'').trim(); if(t) titleCounts[t]=(titleCounts[t]||0)+1; });
+      var titleEntries = Object.entries(titleCounts).sort(function(a,b){return b[1]-a[1];});
+      var topTitle = titleEntries[0] || ['?',0];
+      var titleTotal = allParsed.filter(function(d){return d.title;}).length;
 
-    // FREE TEXT FILTERS
+      var kfarCount = allParsed.filter(function(d){return String(d.title||'').includes('הכפר');}).length;
+      var kfarPct2 = pct(kfarCount, titleTotal);
+
+      var vs4inv = allParsed.filter(function(d){return String(d.vs4||'').includes('מרגיש');}).length;
+      var vs4tot = allParsed.filter(function(d){return d.vs4;}).length;
+
+      var vs2hear = allParsed.filter(function(d){return String(d.vs2||'').includes('לשמוע');}).length;
+      var vs2tot = allParsed.filter(function(d){return d.vs2;}).length;
+
+      var alone = allParsed.filter(function(d){return String(d.vs1||'').includes('לבד');}).length;
+      var vs1tot = allParsed.filter(function(d){return d.vs1;}).length;
+
+      var impCounts = {};
+      allParsed.forEach(function(d){
+        String(d.important||'').split('|').forEach(function(v){v=v.trim();if(v) impCounts[v]=(impCounts[v]||0)+1;});
+      });
+      var topImp = Object.entries(impCounts).sort(function(a,b){return b[1]-a[1];})[0] || ['?',0];
+
+      var nostAvg = nosts.length ? (nosts.reduce(function(s,a){return s+a;},0)/nosts.length).toFixed(1) : '?';
+      var nostH = nosts.filter(function(v){return v>=4;}).length;
+      var nostL = nosts.filter(function(v){return v<=2;}).length;
+
+      var youngest = ages.length ? Math.min.apply(null,ages) : '?';
+      var oldest = ages.length ? Math.max.apply(null,ages) : '?';
+      var ageAvg = ages.length ? Math.round(ages.reduce(function(s,a){return s+a;},0)/ages.length) : '?';
+
+      var facts = [
+        { emoji:'🎯', text:'הכותרת שמשכה הכי הרבה: "'+topTitle[0]+'" — '+pct(topTitle[1],titleTotal)+'% בחרו בה. שקול לבנות סיפור על הנושא הזה.' },
+        { emoji:'👻', text:kfarPct2+'% בחרו בכותרת "הכפר" — כלומר כפרים מבודדים ועיירות מסתוריות זה פורמט שעובד. כדאי לעשות עוד כזה.' },
+        { emoji:'🎧', text:pct(vs2hear,vs2tot)+'% מעדיפים לשמוע משהו מפחיד על פני לראות — הקהל שלך הוא קהל שמיעתי. ההשקעה בקריינות ואפקטים משתלמת.' },
+        { emoji:'👁️', text:pct(vs4inv,vs4tot)+'% מפחדים יותר מאיום בלתי נראה — השאר את המפלצת מחוץ לפריים. הדמיון עושה עבודה טובה יותר.' },
+        { emoji:'🧍', text:pct(alone,vs1tot)+'% מפחדים יותר מלהיות לבד — שים את הגיבור לבד כמה שיותר מוקדם בסיפור.' },
+        { emoji:'⭐', text:'מה הכי חשוב בסיפור? "'+topImp[0]+'" — '+topImp[1]+' ממלאים בחרו בזה. תתמקד בזה בכל סיפור.' },
+        { emoji:'📊', text:'ממוצע נוסטלגיה: '+nostAvg+'/5. '+pct(nostH,nosts.length)+'% נוסטלגיים לקלאסי, '+pct(nostL,nosts.length)+'% רוצים חידושים — הקהל מאוזן, אל תפסיק לחדש אבל שמור על הטון.' },
+        { emoji:'🧒', text:'הגיל הממוצע: '+ageAvg+'. הצעיר: '+youngest+', המבוגר: '+oldest+'. אתה מדבר לקהל צעיר — שפה, רפרנסים ואורך סרטון צריכים להתאים.' },
+      ];
+
+      document.getElementById('fun-facts-grid').innerHTML = facts.map(function(f){
+        return '<div class="card col-6" style="display:flex;align-items:flex-start;gap:14px"><span style="font-size:26px;flex-shrink:0;margin-top:2px">'+f.emoji+'</span><div style="font-size:14px;color:var(--tx);line-height:1.7">'+f.text+'</div></div>';
+      }).join('');
+    } catch(e){ console.error('fun facts error:', e); }
+
+        // FREE TEXT FILTERS
     document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(f => `
       <button class="resp-filter ${f.key===activeFilter?'active':''}" onclick="setFilter('${f.key}',this)">${f.label}</button>
     `).join('');
