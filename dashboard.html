@@ -202,6 +202,21 @@ body {
     </div>
   </div>
 
+  <div class="section-label">קריפיפסטה ישראלית</div>
+  <div class="grid">
+    <div class="card col-6">
+      <div class="card-title">האם תרצו קריפיפסטות ישראליות?</div>
+      <div id="israeli-bars"></div>
+    </div>
+    <div class="card col-6">
+      <div class="card-title">מתי צפית לאחרונה בסרטון אימה?</div>
+      <div id="youtube-bars"></div>
+    </div>
+  </div>
+
+  <div class="section-label">fun facts</div>
+  <div class="grid" id="fun-facts-grid"></div>
+
   <div class="section-label">תשובות חופשיות</div>
   <div class="grid">
     <div class="card col-12">
@@ -334,12 +349,12 @@ function renderVS(containerId, pairs) {
 }
 
 const FREE_TEXT_FIELDS = [
-  { key: 'honest', label: 'דבר שאף אחד לא אומר' },
-  { key: 'favorite', label: 'קריפיפסטה אהובה' },
   { key: 'expected', label: 'ציפית ליותר' },
   { key: 'character', label: 'דמות זכורה' },
   { key: 'sentence', label: 'השלמת משפט' },
   { key: 'firsttime', label: 'פעם ראשונה' },
+  { key: 'feel', label: 'רגש ראשון' },
+  { key: 'spacycrap', label: 'ספייסי-קראפ' },
   { key: 'spacycrap', label: 'ספייסי-קראפ' },
   { key: 'feel', label: 'רגש ראשון' },
 ];
@@ -486,6 +501,45 @@ async function init() {
        b:{label:'איום בלתי נראה', count:allParsed.filter(d=>String(d.vs4).includes('מרגיש')).length}},
     ];
     renderVS('vs-results', vsData);
+
+    // ISRAELI
+    const israeliMap = {};
+    allParsed.forEach(d => { const v=String(d.israeli||'').trim(); if(v) israeliMap[v]=(israeliMap[v]||0)+1; });
+    renderBars('israeli-bars', Object.entries(israeliMap).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({label:k,value:v})), 'pur');
+
+    // YOUTUBE FREQUENCY
+    const ytMap = {};
+    allParsed.forEach(d => { const v=String(d.youtube||'').trim(); if(v) ytMap[v]=(ytMap[v]||0)+1; });
+    renderBars('youtube-bars', Object.entries(ytMap).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([k,v])=>({label:k,value:v})), 'red');
+
+    // FUN FACTS
+    const totalWithAge = ages.length;
+    const youngest = Math.min(...ages);
+    const oldest = Math.max(...ages);
+    const mostCommonTitle = Object.entries(Object.fromEntries(
+      Object.entries((() => { const m={}; allParsed.forEach(d=>{const t=String(d.title||'').trim();if(t)m[t]=(m[t]||0)+1;}); return Object.entries(m); }).map(([k,v])=>[k,v]))
+    )).sort((a,b)=>b[1]-a[1])[0];
+    const vs4winner = allParsed.filter(d=>String(d.vs4).includes('מרגיש')).length > allParsed.filter(d=>String(d.vs4).includes('נראית')).length ? 'איום בלתי נראה' : 'מפלצת שנראית';
+    const nightOwls = allParsed.filter(d=>String(d.firsttime||'').match(/לבד|חשוך|לילה|חצות|בלילה|3|2/)).length;
+    const kfar = allParsed.filter(d=>String(d.title||'').includes('הכפר')).length;
+    const kfarPct = pct(kfar, allParsed.filter(d=>d.title).length);
+
+    const facts = [
+      { emoji:'🧒', text:\`הגיל הצעיר ביותר: \${youngest}\` },
+      { emoji:'🧓', text:\`הגיל המבוגר ביותר: \${oldest}\` },
+      { emoji:'🏆', text:\`הכותרת המנצחת: "\${mostCommonTitle?.[0]||'?'}" בחרו בה \${mostCommonTitle?.[1]||0} ממלאים (\${pct(mostCommonTitle?.[1]||0, allParsed.filter(d=>d.title).length)}%)\` },
+      { emoji:'👻', text:\`\${kfarPct}% בחרו בכותרת "הכפר" — הכי מרתקת\` },
+      { emoji:'🌑', text:\`\${nightOwls} ממלאים שמרו על הקריפיפסטה הראשונה שלהם ללילה או לבד\` },
+      { emoji:'👁️', text:\`\${pct(allParsed.filter(d=>String(d.vs4).includes('מרגיש')).length, allParsed.filter(d=>d.vs4).length)}% מפחדים יותר מאיום בלתי נראה מאשר ממפלצת שנראית\` },
+      { emoji:'🎧', text:\`\${pct(allParsed.filter(d=>String(d.vs2).includes('לשמוע')).length, allParsed.filter(d=>d.vs2).length)}% מעדיפים לשמוע משהו מפחיד על פני לראות\` },
+      { emoji:'🔢', text:\`ממוצע ציון נוסטלגיה: \${nosts.length ? (nosts.reduce((s,a)=>s+a,0)/nosts.length).toFixed(1) : '?'} מתוך 5\` },
+    ];
+    document.getElementById('fun-facts-grid').innerHTML = facts.map(f => \`
+      <div class="card col-6" style="display:flex;align-items:flex-start;gap:14px">
+        <span style="font-size:28px;flex-shrink:0">\${f.emoji}</span>
+        <div style="font-size:14px;color:var(--tx);line-height:1.6">\${f.text}</div>
+      </div>
+    \`).join('');
 
     // FREE TEXT FILTERS
     document.getElementById('resp-filters').innerHTML = FREE_TEXT_FIELDS.map(f => `
