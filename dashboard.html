@@ -540,9 +540,9 @@ async function init() {
     renderBars('youtube-bars', Object.entries(ytMap).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([k,v])=>({label:k,value:v})), 'red');
 
     // FUN FACTS
-    const totalWithAge = ages.length;
-    const youngest = Math.min(...ages);
-    const oldest = Math.max(...ages);
+    var totalWithAge = ages.length;
+    var youngest = Math.min.apply(null, ages);
+    var oldest = Math.max.apply(null, ages);
     const mostCommonTitle = Object.entries(Object.fromEntries(
       Object.entries((() => { const m={}; allParsed.forEach(d=>{const t=String(d.title||'').trim();if(t)m[t]=(m[t]||0)+1;}); return Object.entries(m); }).map(([k,v])=>[k,v]))
     )).sort((a,b)=>b[1]-a[1])[0];
@@ -581,8 +581,8 @@ async function init() {
       nostH = nosts.filter(function(v){return v>=4;}).length;
       nostL = nosts.filter(function(v){return v<=2;}).length;
 
-      var youngest = ages.length ? Math.min.apply(null,ages) : '?';
-      var oldest = ages.length ? Math.max.apply(null,ages) : '?';
+      youngest = ages.length ? Math.min.apply(null,ages) : '?';
+      oldest = ages.length ? Math.max.apply(null,ages) : '?';
       var ageAvg = ages.length ? Math.round(ages.reduce(function(s,a){return s+a;},0)/ages.length) : '?';
 
       var facts = [
